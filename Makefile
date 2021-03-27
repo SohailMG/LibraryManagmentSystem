@@ -1,10 +1,9 @@
-output:Main.o 
-		g++ -Wall Main.o -o output
+GXX = g++
+FLAGS = -Wall
 
-Main.o:Main.cpp
-		g++ -c Main.cpp
-
-
-
+Program:Main.o Book.o
+		$(GXX) $(FLAGS) Main.o Book.o -o Program
+Main.o:Main.cpp Book.cpp
+		$(GXX) -c Main.cpp Book.cpp
 clean:
-	rm *.o output
+	rm *.o Program
