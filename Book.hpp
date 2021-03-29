@@ -16,23 +16,24 @@ class Book
 private:
     std::string title;
     std::vector<std::string> authors;
-    int ISBN, quantity;
+    unsigned long ISBN;
+    int  quantity;
     Book *next;
 
 public:
     Book();
     // book class contructure
-    Book(std::string title, std::vector<std::string> authors, int ISBN, int quantity);
+    Book(std::string title, std::vector<std::string> authors, unsigned long  ISBN, int quantity);
     std::string getTitle();
     std::vector<std::string> getAuthors();
-    int getISBN();
+    unsigned long getISBN();
     int getQuantity();
 
     Book* getNext();
     void setNext(Book *next);
     void setAuthors(std::vector<std::string> authors);
     void setQnty(int quantity);
-    void setISBN(int ISBN);
+    void setISBN(unsigned long ISBN);
     void setTitle(std::string title);
 };
 

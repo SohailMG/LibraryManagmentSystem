@@ -10,19 +10,16 @@ int main(int argc, char const *argv[])
     HashTabel h;
 
     
-    
+    //Deep Reinforcement Learning Hands-On	Maxim Lapan	9781788839303	7	
     std::vector<std::string> authors;
     authors.push_back("James");
     authors.push_back("TOM");
-    Book b = Book("Title",authors,1232123234,2);
-    Book b2 = Book("Sohail",authors,123,2);
 
-    int index =  h.hash_funtion("Parallel and Concurrent Programming in Haskell") ;
+    Book b = Book("Deep Reinforcement Learning Hands-On",authors,9781788839303,7);
+    Book b2 = Book("Sohail",authors,123,2);
     h.insert(b);
     h.insert(b2);
 
-    
-
-    std::cout <<  h.search("Sohail")<< std::endl;
+    std::cout <<  h.search("Deep Reinforcement Learning Hands-On")<< std::endl;
     return 0;
 }

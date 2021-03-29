@@ -3,7 +3,7 @@
 Book::Book(){
     
 }
-Book::Book(std::string title, std::vector<std::string> authors, int ISBN, int quantity)
+Book::Book(std::string title, std::vector<std::string> authors, unsigned long ISBN, int quantity)
 {
     this->title = title;
     this->authors = authors;
@@ -14,7 +14,7 @@ std::string Book::getTitle()
 {
     return Book::title;
 }
-int Book::getISBN()
+unsigned long Book::getISBN()
 {
     return Book::ISBN;
 }
@@ -31,7 +31,7 @@ void Book::setTitle(std::string title)
 {
     this->title = title;
 }
-void Book::setISBN(int ISBN)
+void Book::setISBN(unsigned long ISBN)
 {
     this->ISBN = ISBN;
 }
