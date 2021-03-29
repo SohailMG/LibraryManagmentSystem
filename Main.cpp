@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
     while (getline(datafile, data))
     {
         // Output the text from the file
-        lineCounter++;
+        
         std::stringstream ss(data);
 
         std::string title, author, ISBN, Q;
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
         h.insert(b);
     }
-
-    std::cout << h.search("The Oracle Book") << std::endl;
+    // h.printTable();
+    std::cout << h.search("What is Mathematics?") << std::endl;
     return 0;
 }
