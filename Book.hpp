@@ -12,20 +12,28 @@
  */
 class Book
 {
-    // declaring private class memebers 
-    private:
+    // declaring private class memebers
+private:
     std::string title;
     std::vector<std::string> authors;
-    int ISBN,quantity;
-    public:
+    int ISBN, quantity;
+    Book *next;
+
+public:
     Book();
-    // book class contructure 
-    Book(std::string title,std::vector<std::string> authors,int ISBN,int quantity);
+    // book class contructure
+    Book(std::string title, std::vector<std::string> authors, int ISBN, int quantity);
     std::string getTitle();
     std::vector<std::string> getAuthors();
     int getISBN();
     int getQuantity();
-    // ~Book();
+
+    Book* getNext();
+    void setNext(Book *next);
+    void setAuthors(std::vector<std::string> authors);
+    void setQnty(int quantity);
+    void setISBN(int ISBN);
+    void setTitle(std::string title);
 };
 
 #endif

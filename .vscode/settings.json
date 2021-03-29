@@ -76,6 +76,7 @@
         "ranges": "cpp",
         "stop_token": "cpp",
         "__memory": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "unordered_set": "cpp"
     }
 }

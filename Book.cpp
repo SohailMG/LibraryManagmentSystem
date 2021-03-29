@@ -1,5 +1,8 @@
 #include "Book.hpp"
 
+Book::Book(){
+    
+}
 Book::Book(std::string title, std::vector<std::string> authors, int ISBN, int quantity)
 {
     this->title = title;
@@ -7,15 +10,43 @@ Book::Book(std::string title, std::vector<std::string> authors, int ISBN, int qu
     this->ISBN = ISBN;
     this->quantity = quantity;
 }
-std::string Book::getTitle(){
+std::string Book::getTitle()
+{
     return Book::title;
 }
-int Book::getISBN(){
+int Book::getISBN()
+{
     return Book::ISBN;
 }
-int Book::getQuantity(){
+int Book::getQuantity()
+{
     return Book::quantity;
 }
-std::vector<std::string> Book::getAuthors(){
+std::vector<std::string> Book::getAuthors()
+{
     return Book::authors;
+}
+
+void Book::setTitle(std::string title)
+{
+    this->title = title;
+}
+void Book::setISBN(int ISBN)
+{
+    this->ISBN = ISBN;
+}
+void Book::setQnty(int quantity)
+{
+    this->quantity = quantity;
+}
+void Book::setAuthors(std::vector<std::string> authors)
+{
+    this->authors = authors;
+}
+void Book::setNext(Book *next)
+{
+    this->next = next;
+}
+Book* Book::getNext(){
+    return this->next;
 }
