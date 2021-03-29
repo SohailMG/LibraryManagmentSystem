@@ -11,7 +11,7 @@
 class HashTabel
 {
 private:
-     static const int TABEL_SIZE = 10;
+     static const int TABEL_SIZE = 217;
      int ll_size;
      std::vector<Book> *table;
      Book* hashT[TABEL_SIZE];
@@ -24,6 +24,8 @@ public:
     std::string search(std::string title);
     void insert(Book V);
     int getSize();
+    void printTable();
+    int numOfBooks(int index);
 };
 
 #endif

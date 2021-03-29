@@ -42,6 +42,6 @@ int main(int argc, char const *argv[])
         h.insert(b);
     }
 
-    std::cout << h.search("Graph Databases") << std::endl;
+    std::cout << h.search("The Oracle Book") << std::endl;
     return 0;
 }
