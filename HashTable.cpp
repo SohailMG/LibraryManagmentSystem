@@ -4,6 +4,10 @@
 #include <cstdio>
 #include "HashTable.hpp"
 
+/**
+ * @brief Construct a new Hash Tabel:: Hash Tabel object
+ * 
+ */
 HashTabel::HashTabel()
 {
     std::vector<std::string> authors;
@@ -17,7 +21,13 @@ HashTabel::HashTabel()
         hashT[i]->setNext(NULL);
     }
 }
-
+/**
+ * @brief takes a string as input and adds up the ASCI value
+ * of each char in the string and returns the mod of the resutls
+ * of deviding sum of ASCI values by table size
+ * @param key title of book as string
+ * @return int hash value
+ */
 int HashTabel::hash_funtion(std::string key)
 {
 
@@ -31,6 +41,15 @@ int HashTabel::hash_funtion(std::string key)
 
     return index;
 }
+/**
+ * @brief takes title as input, gets the hash value of the input
+ * declares pointer of the first book object in the table.
+ * uses the hash value as index to access table element
+ * if the first elm is not equal to title it will update
+ * the pointer to the next elm and compares it
+ * @param title string title of book
+ * @return std::string of book details
+ */
 std::string HashTabel::search(std::string title)
 {
     int index = HashTabel::hash_funtion(title);
@@ -42,7 +61,7 @@ std::string HashTabel::search(std::string title)
     }
     else if (hashT[index]->getTitle() == title)
     {
-        book = "Name :" + hashT[index]->getTitle() + "\n" + "ISBN :" + std::to_string(hashT[index]->getISBN());
+        book = "Name :" + hashT[index]->getTitle() + "\n" ;
         return book;
     }
     else
@@ -54,12 +73,20 @@ std::string HashTabel::search(std::string title)
                 book = "Name :" + ptr->getTitle() + "\n" + "ISBN :" + std::to_string(ptr->getISBN());
                 return book;
             }
-            ptr = ptr->getNext();
+            else
+            {
+                ptr = ptr->getNext();
+            }
         }
     }
 
     return book;
 }
+/**
+ * @brief 
+ * 
+ * @param V 
+ */
 void HashTabel::insert(Book V)
 {
     std::string title = V.getTitle();
@@ -74,17 +101,17 @@ void HashTabel::insert(Book V)
     else
     {
         Book *ptr = hashT[index];
-        Book *n = new Book;
-        n->setTitle(V.getTitle());
-        n->setISBN(V.getISBN());
-        n->setQnty(V.getQuantity());
-        n->setAuthors(V.getAuthors());
-        n->setNext(NULL);
+        Book *book = new Book;
+        book->setTitle(V.getTitle());
+        book->setISBN(V.getISBN());
+        book->setQnty(V.getQuantity());
+        book->setAuthors(V.getAuthors());
+        book->setNext(NULL);
         while (ptr->getNext() != NULL)
         {
             ptr = ptr->getNext();
         }
-        ptr->setNext(n);
+        ptr->setNext(book);
     }
 }
 int HashTabel::getSize()
