@@ -1,11 +1,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <ostream>
+#include<fstream>
 #include <cstdio>
 #include "HashTable.hpp"
 
 /**
  * @brief Construct a new Hash Tabel:: Hash Tabel object
+ * and initialises the current table values to empty or null
  * 
  */
 HashTabel::HashTabel()
@@ -31,7 +34,7 @@ HashTabel::HashTabel()
 int HashTabel::hash_funtion(std::string key)
 {
 
-    int hash = 17;
+    int hash = 21;
     int index;
     for (size_t i = 0; i < key.length(); i++)
     {
@@ -61,7 +64,7 @@ std::string HashTabel::search(std::string title)
     }
     else if (hashT[index]->getTitle() == title)
     {
-        book = "Name :" + hashT[index]->getTitle() + "\n" ;
+        book = "Name :" + hashT[index]->getTitle();
         return book;
     }
     else
@@ -87,9 +90,12 @@ std::string HashTabel::search(std::string title)
  * 
  * @param V 
  */
+    
 void HashTabel::insert(Book V)
 {
+    
     std::string title = V.getTitle();
+    
     int index = HashTabel::hash_funtion(title);
     if (hashT[index]->getTitle() == "Empty")
     {
@@ -97,6 +103,7 @@ void HashTabel::insert(Book V)
         hashT[index]->setISBN(V.getISBN());
         hashT[index]->setQnty(V.getQuantity());
         hashT[index]->setAuthors(V.getAuthors());
+        
     }
     else
     {
@@ -107,6 +114,7 @@ void HashTabel::insert(Book V)
         book->setQnty(V.getQuantity());
         book->setAuthors(V.getAuthors());
         book->setNext(NULL);
+        
         while (ptr->getNext() != NULL)
         {
             ptr = ptr->getNext();

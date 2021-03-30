@@ -16,7 +16,7 @@
 int select_Option()
 {
     int option;
-    std::cout << "+----------------------------+\n"
+    std::cout << "+----------[MENU]------------+"
               << std::endl;
     std::cout << "|Search Book By Title......1 |" << std::endl;
     std::cout << "|Insert New Book...........2 |" << std::endl;
@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
     std::string data;
     std::vector<std::string> tokens;
     std::vector<std::string> authors;
-std::ofstream MyFile("searches.txt");
+    std::ofstream MyFile("searches.txt");
     while (getline(datafile, data))
     {
         // Output the text from the file
