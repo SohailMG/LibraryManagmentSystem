@@ -12,19 +12,20 @@ Book::Book(std::string title, std::vector<std::string> authors, unsigned long IS
 }
 std::string Book::getTitle()
 {
-    return Book::title;
+    return this->title;
 }
 unsigned long Book::getISBN()
 {
-    return Book::ISBN;
+    return this->ISBN;
 }
 int Book::getQuantity()
 {
-    return Book::quantity;
+    return this->quantity;
 }
 std::vector<std::string> Book::getAuthors()
 {
-    return Book::authors;
+
+    return this->authors;
 }
 
 void Book::setTitle(std::string title)
@@ -49,4 +50,14 @@ void Book::setNext(Book *next)
 }
 Book* Book::getNext(){
     return this->next;
+}
+std::string Book::showAuthors(){
+    std::string authorsList;
+    for (size_t i = 0; i < this->authors.size(); i++)
+    {
+            
+        authorsList = authorsList + "[" + std::to_string(i + 1)+"] - " +  this->authors.at(i)  + "\n\t  ";
+        
+    }
+    return authorsList;
 }

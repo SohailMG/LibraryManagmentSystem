@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <ostream>
-#include<fstream>
+#include <fstream>
 #include <cstdio>
 #include "HashTable.hpp"
 
@@ -64,7 +64,12 @@ std::string HashTabel::search(std::string title)
     }
     else if (hashT[index]->getTitle() == title)
     {
-        book = "Name :" + hashT[index]->getTitle();
+        book = "Name     : " + hashT[index]->getTitle() + "\n" +
+               "ISBN     : " + std::to_string(hashT[index]->getISBN()) + "\n" +
+               "Quantity : " + std::to_string(hashT[index]->getQuantity()) + "\n" +
+               "------------------------------------------------------\n" +
+               "Authors  :" + hashT[index]->showAuthors();
+
         return book;
     }
     else
@@ -73,7 +78,11 @@ std::string HashTabel::search(std::string title)
         {
             if (ptr->getTitle() == title)
             {
-                book = "Name :" + ptr->getTitle() + "\n" + "ISBN :" + std::to_string(ptr->getISBN());
+                book =
+                    "Name     : " + ptr->getTitle() + "\n" +
+                    "ISBN     : " + std::to_string(ptr->getISBN()) + "\n" +
+                    "Quantity : " + std::to_string(ptr->getQuantity()) + "\n" +
+                    "Authors  : " + ptr->showAuthors();
                 return book;
             }
             else
@@ -90,12 +99,12 @@ std::string HashTabel::search(std::string title)
  * 
  * @param V 
  */
-    
+
 void HashTabel::insert(Book V)
 {
-    
+
     std::string title = V.getTitle();
-    
+
     int index = HashTabel::hash_funtion(title);
     if (hashT[index]->getTitle() == "Empty")
     {
@@ -103,7 +112,6 @@ void HashTabel::insert(Book V)
         hashT[index]->setISBN(V.getISBN());
         hashT[index]->setQnty(V.getQuantity());
         hashT[index]->setAuthors(V.getAuthors());
-        
     }
     else
     {
@@ -114,7 +122,7 @@ void HashTabel::insert(Book V)
         book->setQnty(V.getQuantity());
         book->setAuthors(V.getAuthors());
         book->setNext(NULL);
-        
+
         while (ptr->getNext() != NULL)
         {
             ptr = ptr->getNext();
@@ -153,5 +161,79 @@ int HashTabel::numOfBooks(int index)
             ptr = ptr->getNext();
         }
         return count;
+    }
+}
+
+void HashTabel::remove_book(std::string title)
+{
+    int index = HashTabel::hash_funtion(title);
+
+    Book *delete_ptr;
+    Book *ptr1;
+    Book *ptr2;
+
+    if (hashT[index]->getTitle() == "Empty")
+    {
+        std::cout << title << " -  was not found" << std::endl;
+    }
+    else if (hashT[index]->getTitle() == title && hashT[index]->getNext() == NULL)
+    {
+        hashT[index]->setTitle("Empty");
+        hashT[index]->setTitle("Empty");
+        hashT[index]->setISBN(0);
+        hashT[index]->setQnty(0);
+        std::cout << "Title  : " << title << std::endl;
+        std::cout << "Status : *Removed*" << std::endl;
+    }
+    else if (hashT[index]->getTitle() == title)
+    {
+        delete_ptr = hashT[index];
+        hashT[index] = hashT[index]->getNext();
+        delete delete_ptr;
+        std::cout << "Title  : " << title << std::endl;
+        std::cout << "Status : *Removed* " << std::endl;
+    }
+    else
+    {
+        // setting first pointer to point to the second book object
+        ptr1 = hashT[index]->getNext();
+        /* 
+        setting second pointer to point to the first book object 
+        and keep track of the previous book object
+        */
+        ptr2 = hashT[index];
+
+        /* 
+        keeps advancing first and second pointer by one book object 
+        as long as first pointer is pointing to a book object
+        and it does not find a match
+        */
+        while (ptr1 != NULL && ptr1->getTitle() != title)
+        {
+
+            ptr2 = ptr1;
+            ptr1 = ptr1->getNext();
+        }
+        if (ptr1 == NULL)
+        {
+            std::cout << title << " Was not found" << std::endl;
+        }
+        else
+        {
+            /* 
+            setting the deleting pointer to the matched book object 
+            and setting first pointer to point to next item in the 
+            linked list 
+            */
+            delete_ptr = ptr1;
+            ptr1 = ptr1->getNext();
+
+            // setting second pointer to point to the new item first pointer pointing to
+            ptr2->setNext(ptr1);
+
+            delete delete_ptr;
+            std::cout << "Title  : " << title << std::endl;
+            std::cout << "Status : *Removed* " << std::endl;
+        }
     }
 }

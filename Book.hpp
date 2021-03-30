@@ -28,6 +28,7 @@ public:
     std::vector<std::string> getAuthors();
     unsigned long getISBN();
     int getQuantity();
+    std::string showAuthors();
 
     Book* getNext();
     void setNext(Book *next);

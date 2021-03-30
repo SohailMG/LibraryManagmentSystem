@@ -29,12 +29,26 @@ int select_Option()
     return option;
 }
 
+std::vector<std::string> split(const std::string &s)
+{
+    char delim = ';';
+    std::vector<std::string> result;
+    std::stringstream ss(s);
+    std::string item;
+
+    while (std::getline(ss, item, delim))
+    {
+        result.push_back(item);
+    }
+    return result;
+}
+
 int main(int argc, char const *argv[])
 {
     HashTabel h;
 
     //Deep Reinforcement Learning Hands-On	Maxim Lapan	9781788839303	7
-    int lineCounter = 0;
+    
     std::ifstream datafile(argv[1]);
     std::string data;
     std::vector<std::string> tokens;
@@ -43,46 +57,53 @@ int main(int argc, char const *argv[])
     while (getline(datafile, data))
     {
         // Output the text from the file
-
+        // authors.clear();
         std::stringstream ss(data);
-
         std::string title, author, ISBN, Q;
+
+        std::stringstream split_authors(author);
 
         std::getline(ss, title, '\t');
         std::getline(ss, author, '\t');
         std::getline(ss, ISBN, '\t');
         std::getline(ss, Q, '\t');
 
-        if (std::stoi(Q) == 0)
+        // authors.push_back(author);
+        std::vector<std::string> tokens =  split(author);
+
+        for (size_t i = 0; i < tokens.size(); i++)
         {
-            std::cout << title << std::endl;
+            authors.push_back(tokens.at(i));
         }
-        
-        authors.push_back(author);
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
         h.insert(b);
-        
-        MyFile << h.search(b.getTitle()) << std::endl;
+        authors.clear();
+
+        MyFile << std::getline(ss, author, ';') << std::endl;
     }
-        MyFile.close();
+    MyFile.close();
 
     int option = select_Option();
     if (option == 1)
     {
         std::string title;
-        std::cout << "Search Book Title > ";
-        std::cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
-        std::getline(std::cin,title);
+        std::cout << "Search Book Title   > ";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::getline(std::cin, title);
+        std::cout << "\n--------------------[RESULTS]-------------------------\n";
         std::cout << h.search(title) << std::endl;
-    }else if(option == 2){
+        std::cout << "------------------------------------------------------\n";
+    }
+    else if (option == 2)
+    {
         std::string title;
         std::string author;
         unsigned long ISBN;
         int quantity;
 
-        std::cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Enter Title    > ";
-        std::getline(std::cin,title);
+        std::getline(std::cin, title);
 
         std::cout << "Enter ISBN     > ";
         std::cin >> ISBN;
@@ -90,25 +111,29 @@ int main(int argc, char const *argv[])
         std::cout << "Enter Quantity > ";
         std::cin >> quantity;
 
-        std::cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Enter Authors  > ";
-        std::getline(std::cin,author);
+        std::getline(std::cin, author);
         authors.clear();
         authors.push_back(author);
 
-        Book book = Book(title,authors,ISBN,quantity);
+        Book book = Book(title, authors, ISBN, quantity);
         h.insert(book);
         std::cout << "\n\tNew Book Added\n";
-        std::cout << "------------------------------"<<std::endl;
+        std::cout << "------------------------------" << std::endl;
         std::cout << "Book     - " << book.getTitle() << std::endl;
         std::cout << "Location - " << h.hash_funtion(book.getTitle()) << std::endl;
-        std::cout << "------------------------------"<<std::endl;
+        std::cout << "------------------------------" << std::endl;
+    }else if(option == 3){
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::string title;
+        std::cout << "Enter Book Title  > ";
+        std::getline(std::cin, title);
+        h.remove_book(title);
+        std::cout << h.search(title);
         
 
     }
-
-    // std::cout << h.search("Operating System (A Practical App)") << std::endl;
-    // std::cout << h.search("SCO UNIX in a Nutshell") << std::endl;
 
     return 0;
 }

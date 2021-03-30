@@ -24,6 +24,7 @@ public:
     int getSize();
     void printTable();
     int numOfBooks(int index);
+    void remove_book(std::string title);
 };
 
 #endif
