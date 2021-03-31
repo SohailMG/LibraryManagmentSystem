@@ -22,7 +22,7 @@ public:
     std::string search(std::string title);
     void insert(Book V);
     int getSize();
-    void printTable();
+    std::string printTable(std::string title);
     int numOfBooks(int index);
     void remove_book(std::string title);
 };
