@@ -11,7 +11,7 @@
  * and initialises the current table values to empty or nullptr
  * 
  */
-HashTabel::HashTabel()
+Hash::Hash()
 {
     std::vector<std::string> authors;
     for (size_t i = 0; i < this->TABEL_SIZE; i++)
@@ -31,7 +31,7 @@ HashTabel::HashTabel()
  * @param key title of book as string
  * @return int hash value
  */
-int HashTabel::hash_funtion(std::string key)
+int Hash::hash_funtion(std::string key)
 {
 
     int hash = 21;
@@ -53,10 +53,10 @@ int HashTabel::hash_funtion(std::string key)
  * @param title string title of book
  * @return std::string of book details
  */
-std::string HashTabel::search(std::string title)
+std::string Hash::search(std::string title)
 {
     // storing the index value of the given book title
-    unsigned long index = HashTabel::hash_funtion(title);
+    unsigned long index = Hash::hash_funtion(title);
     //
     Book *ptr = hashT[index];
     std::string book;
@@ -95,6 +95,10 @@ std::string HashTabel::search(std::string title)
             {
                 ptr = ptr->getNext();
             }
+            if (ptr == nullptr)
+            {
+                std::cout << " Book was not found " << std::endl;
+            }
         }
     }
 
@@ -109,12 +113,12 @@ std::string HashTabel::search(std::string title)
  * @param book book object being added
  */
 
-void HashTabel::insert(Book book)
+void Hash::insert(Book book)
 {
 
     std::string title = book.getTitle();
     // getting the hash value of the book title being added
-    unsigned long index = HashTabel::hash_funtion(title);
+    unsigned long index = Hash::hash_funtion(title);
     // checking if the index of the table cell is empty
     if (hashT[index]->getTitle() == "Empty")
     {
@@ -153,9 +157,9 @@ void HashTabel::insert(Book book)
  * of the book being removed.checks if the index of the table book being removed.
  * @param title std::string title of book being removed
  */
-void HashTabel::remove_book(std::string title)
+void Hash::remove_book(std::string title)
 {
-    unsigned long index = HashTabel::hash_funtion(title);
+    unsigned long index = Hash::hash_funtion(title);
 
     // delcaring pointer to point to the book being removed
     Book *delete_ptr;
@@ -259,4 +263,52 @@ void HashTabel::remove_book(std::string title)
             }
         }
     }
+}
+/**
+ * @brief gets the hash value of the book title being added
+ * checks the index of the table and compares it's elements with
+ * the title for a match preventing doublicate keys
+ * @param title 
+ * @return true - if the new show title matching an exisiting book 
+ * @return false  - if there is no match found
+ */
+bool Hash::check_dublicates(std::string title)
+{
+    // storing the index value of the given book title
+    unsigned long index = Hash::hash_funtion(title);
+    //
+    Book *ptr = hashT[index];
+    bool exists = false;
+    // checking if the first elm of the table cell has the default
+    if (ptr->getTitle() == "Empty")
+    {
+        exists = false;
+    }
+    else if (hashT[index]->getTitle() == title)
+    {
+
+        exists = true;
+    }
+    else
+    {
+        bool title_found = false;
+        while (ptr != nullptr && title_found == false)
+        {
+            if (ptr->getTitle() == title)
+            {
+                title_found = true;
+                exists = true;
+            }
+            else
+            {
+                ptr = ptr->getNext();
+            }
+            if (ptr == nullptr)
+            {
+                exists = false;
+            }
+        }
+    }
+
+    return exists;
 }

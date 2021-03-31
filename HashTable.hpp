@@ -3,12 +3,11 @@
 #include <iostream>
 #include "Book.hpp"
 #include <string>
-#include<list>
 #include<vector>
 
 
-// template <typename K, typename V>
-class HashTabel
+
+class Hash
 {
 private:
      static const int TABEL_SIZE = 271;
@@ -17,11 +16,12 @@ private:
      Book* hashT[TABEL_SIZE];
 
 public:
-    HashTabel();
+    Hash();
     int hash_funtion(std::string key);
     std::string search(std::string title);
     void insert(Book V);
     void remove_book(std::string title);
+    bool check_dublicates(std::string title);
 };
 
 #endif

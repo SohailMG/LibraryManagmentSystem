@@ -1,8 +1,9 @@
 GXX = g++
 FLAGS = -Wall
+OBJs = Main.o Book.o HashTable.o
 
-Program:Main.o Book.o HashTable.o
-		$(GXX) $(FLAGS) Main.o Book.o HashTable.o -o Program
+Program:$(OBJs)
+		$(GXX) $(FLAGS) $(OBJs) -o Program
 Main.o:Main.cpp Book.cpp HashTable.cpp
 		$(GXX) -c Main.cpp Book.cpp HashTable.cpp 
 clean:

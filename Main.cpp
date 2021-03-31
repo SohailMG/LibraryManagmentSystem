@@ -19,14 +19,14 @@ int select_Option()
     int option;
     std::cout << "\n+----------[MENU]--------+---+"
               << std::endl;
-    std::cout << "|Search Book By Title    | 1 |" << std::endl;
-    std::cout << "+------------------------+---+\n";
-    std::cout << "|Insert New Book         | 2 |" << std::endl;
-    std::cout << "+------------------------+---+\n";
-    std::cout << "|Remove Book             | 3 |" << std::endl;
-    std::cout << "+------------------------+---+\n";
-    std::cout << "|Exit Program            | 0 |" << std::endl;
-    std::cout << "+------------------------+---+\n"
+    std::cout << "|Search Book By Title     | 1 |" << std::endl;
+    std::cout << "+-------------------------+---+\n";
+    std::cout << "|Insert New Book          | 2 |" << std::endl;
+    std::cout << "+-------------------------+---+\n";
+    std::cout << "|Remove lost/damaged book | 3 |" << std::endl;
+    std::cout << "+-------------------------+---+\n";
+    std::cout << "|Exit Program             | 0 |" << std::endl;
+    std::cout << "+-------------------------+---+\n"
               << std::endl;
     std::cout << "Choose an Option    > ";
     std::cin >> option;
@@ -52,12 +52,13 @@ int main(int argc, char const *argv[])
 {
     if (argc < 2)
     {
-        std::cout << "missing argument\n";
-        std::cout << "Expected <Program> <outputfile>";
+        std::cout << "\tmissing argument\n";
+        std::cout << "Expected <Program> <outputfile>" << std::endl;
         return 0;
     }
 
-    HashTabel h;
+    // declaring a hashtable object;
+    Hash table;
 
     //Deep Reinforcement Learning Hands-On	Maxim Lapan	9781788839303	7
 
@@ -88,7 +89,7 @@ int main(int argc, char const *argv[])
             authors.push_back(tokens.at(i));
         }
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
-        h.insert(b);
+        table.insert(b);
         authors.clear();
     }
 
@@ -101,11 +102,11 @@ int main(int argc, char const *argv[])
             if (option == 1)
             {
                 std::string title;
-                std::cout << "Search Book Title   > ";
+                std::cout << "Search (Full) Book Title   > ";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, title);
                 std::cout << "\n--------------------[RESULTS]-------------------------\n";
-                std::cout << h.search(title) << std::endl;
+                std::cout << table.search(title) << std::endl;
                 std::cout << "------------------------------------------------------\n";
             }
             else if (option == 2)
@@ -115,29 +116,45 @@ int main(int argc, char const *argv[])
                 unsigned long ISBN;
                 int quantity;
 
+                // reading in new book data
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Enter Title    > ";
                 std::getline(std::cin, title);
+                if (table.check_dublicates(title))
+                {
+                    std::cout << "\n\n------------------[FAILED]-----------------"<<std::endl;
+                    std::cout << "Book   : " << title << std::endl;
+                    std::cout << "Reason : Book exists "  << std::endl;
+                    std::cout << "--------------------------------------------\n";
+                }
+                else
+                {
 
-                std::cout << "Enter ISBN     > ";
-                std::cin >> ISBN;
+                    std::cout << "Enter ISBN     > ";
+                    std::cin >> ISBN;
 
-                std::cout << "Enter Quantity > ";
-                std::cin >> quantity;
+                    std::cout << "Enter Quantity > ";
+                    std::cin >> quantity;
 
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Enter Authors  > ";
-                std::getline(std::cin, author);
-                authors.clear();
-                authors.push_back(author);
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cout << "Enter Authors seperated by (;) > ";
+                    std::getline(std::cin, author);
+                    // splitting authors by del and adding into a vector
+                    std::vector<std::string> tokens = split(author);
 
-                Book book = Book(title, authors, ISBN, quantity);
-                h.insert(book);
-                std::cout << "\n\tNew Book Added\n";
-                std::cout << "------------------------------" << std::endl;
-                std::cout << "Book     - " << book.getTitle() << std::endl;
-                std::cout << "Location - " << h.hash_funtion(book.getTitle()) << std::endl;
-                std::cout << "------------------------------" << std::endl;
+                    for (size_t i = 0; i < tokens.size(); i++)
+                    {
+                        authors.push_back(tokens.at(i));
+                    }
+
+                    Book book = Book(title, authors, ISBN, quantity);
+                    table.insert(book);
+                    std::cout << "\n\tNew Book Added\n";
+                    std::cout << "------------------------------" << std::endl;
+                    std::cout << "Book     - " << book.getTitle() << std::endl;
+                    std::cout << "Location - " << table.hash_funtion(book.getTitle()) << std::endl;
+                    std::cout << "------------------------------" << std::endl;
+                }
             }
             else if (option == 3)
             {
@@ -146,7 +163,7 @@ int main(int argc, char const *argv[])
                 std::cout << "Enter Book Title  > ";
                 std::getline(std::cin, title);
                 std::cout << "\n\n---------------------[BOOK]-----------------------\n";
-                h.remove_book(title);
+                table.remove_book(title);
                 std::cout << "--------------------------------------------------\n";
             }
             else
