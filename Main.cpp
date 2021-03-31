@@ -19,13 +19,13 @@ int select_Option()
     int option;
     std::cout << "\n+----------[MENU]--------+---+"
               << std::endl;
-    std::cout << "|Search Book By Title....| 1 |" << std::endl;
+    std::cout << "|Search Book By Title    | 1 |" << std::endl;
     std::cout << "+------------------------+---+\n";
-    std::cout << "|Insert New Book.........| 2 |" << std::endl;
+    std::cout << "|Insert New Book         | 2 |" << std::endl;
     std::cout << "+------------------------+---+\n";
-    std::cout << "|Remove Book.............| 3 |" << std::endl;
+    std::cout << "|Remove Book             | 3 |" << std::endl;
     std::cout << "+------------------------+---+\n";
-    std::cout << "|Exit Program............| 0 |" << std::endl;
+    std::cout << "|Exit Program            | 0 |" << std::endl;
     std::cout << "+------------------------+---+\n"
               << std::endl;
     std::cout << "Choose an Option    > ";
@@ -145,8 +145,9 @@ int main(int argc, char const *argv[])
                 std::string title;
                 std::cout << "Enter Book Title  > ";
                 std::getline(std::cin, title);
+                std::cout << "\n\n---------------------[BOOK]-----------------------\n";
                 h.remove_book(title);
-                std::cout << h.search(title);
+                std::cout << "--------------------------------------------------\n";
             }
             else
             {

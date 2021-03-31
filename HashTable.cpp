@@ -8,7 +8,7 @@
 
 /**
  * @brief Construct a new Hash Tabel:: Hash Tabel object
- * and initialises the current table values to empty or null
+ * and initialises the current table values to empty or nullptr
  * 
  */
 HashTabel::HashTabel()
@@ -21,7 +21,7 @@ HashTabel::HashTabel()
         hashT[i]->setISBN(0);
         hashT[i]->setQnty(0);
         hashT[i]->setAuthors(authors);
-        hashT[i]->setNext(NULL);
+        hashT[i]->setNext(nullptr);
     }
 }
 /**
@@ -78,7 +78,7 @@ std::string HashTabel::search(std::string title)
     else
     {
         bool title_found = false;
-        while (ptr != NULL && title_found == false)
+        while (ptr != nullptr && title_found == false)
         {
             if (ptr->getTitle() == title)
             {
@@ -103,26 +103,26 @@ std::string HashTabel::search(std::string title)
 /**
  * @brief gets the index value of the title of the passed
  * book object, checks if the index of the table is empty
- * or null, then it will override that index with the new 
+ * or nullptr, then it will override that index with the new 
  * book object, otherwise it will make the first item of that cell
  * point to the new item using chaining.
- * @param V book object being added
+ * @param book book object being added
  */
 
-void HashTabel::insert(Book V)
+void HashTabel::insert(Book book)
 {
 
-    std::string title = V.getTitle();
+    std::string title = book.getTitle();
     // getting the hash value of the book title being added
     unsigned long index = HashTabel::hash_funtion(title);
     // checking if the index of the table cell is empty
     if (hashT[index]->getTitle() == "Empty")
     {
         // overriding the current cell with new book data
-        hashT[index]->setTitle(V.getTitle());
-        hashT[index]->setISBN(V.getISBN());
-        hashT[index]->setQnty(V.getQuantity());
-        hashT[index]->setAuthors(V.getAuthors());
+        hashT[index]->setTitle(book.getTitle());
+        hashT[index]->setISBN(book.getISBN());
+        hashT[index]->setQnty(book.getQuantity());
+        hashT[index]->setAuthors(book.getAuthors());
     }
     // when index already has a book object stored
     else
@@ -130,84 +130,21 @@ void HashTabel::insert(Book V)
         // making pointer to point to the first book object in the table cell
         Book *ptr = hashT[index];
         // pointer pointing to new book object
-        Book *book = new Book;
+        Book *bookptr = new Book;
         // setting new values of book added
-        book->setTitle(V.getTitle());
-        book->setISBN(V.getISBN());
-        book->setQnty(V.getQuantity());
-        book->setAuthors(V.getAuthors());
+        bookptr->setTitle(book.getTitle());
+        bookptr->setISBN(book.getISBN());
+        bookptr->setQnty(book.getQuantity());
+        bookptr->setAuthors(book.getAuthors());
         // making new book to point to the end of the linked list
-        book->setNext(NULL);
+        bookptr->setNext(nullptr);
 
         // making the new book pointer to point to the end of the linked list
-        while (ptr->getNext() != NULL)
+        while (ptr->getNext() != nullptr)
         {
             ptr = ptr->getNext();
         }
-        ptr->setNext(book);
-    }
-}
-int HashTabel::getSize()
-{
-    return HashTabel::table->size();
-}
-std::string HashTabel::printTable(std::string title)
-{
-       // storing the index value of the given book title
-    unsigned long index = HashTabel::hash_funtion(title);
-    //
-    Book *ptr = hashT[index];
-    std::string book;
-    // checking if the first elm of the table cell has the default
-    if (ptr->getTitle() == "Empty")
-    {
-        // std::cout << index << " Is Empty" << std::endl;
-    }
-    else if (hashT[index]->getTitle() == title)
-    {
-        book = "Name     : " + hashT[index]->getTitle() + "\n" ;
-
-        return book;
-    }
-    else
-    {
-        bool title_found = false;
-        while (ptr != NULL && title_found == false)
-        {
-            if (ptr->getTitle() == title)
-            {
-                book =
-                    "Name     : " + ptr->getTitle() + "\n" ;
-                title_found = true;
-                return book;
-            }
-            else
-            {
-                ptr = ptr->getNext();
-            }
-        }
-    }
-
-    return book;
-}
-int HashTabel::numOfBooks(int index)
-{
-    int count = 0;
-    if (hashT[index]->getTitle() == "Empty")
-    {
-        return count;
-    }
-    else
-    {
-        count++;
-        Book *ptr = hashT[index];
-        while (ptr->getNext() != NULL)
-        {
-            count++;
-            std::cout << "SUB : " << ptr->getTitle() << std::endl;
-            ptr = ptr->getNext();
-        }
-        return count;
+        ptr->setNext(bookptr);
     }
 }
 
@@ -232,7 +169,7 @@ void HashTabel::remove_book(std::string title)
         std::cout << title << " -  was not found" << std::endl;
     }
     // second condition - checking if first index matches given title and there are no other books
-    else if (hashT[index]->getTitle() == title && hashT[index]->getNext() == NULL)
+    else if (hashT[index]->getTitle() == title && hashT[index]->getNext() == nullptr)
     {
         if (hashT[index]->getQuantity() > 0)
         {
@@ -285,13 +222,13 @@ void HashTabel::remove_book(std::string title)
         as long as first pointer is pointing to a book object
         and it does not find a match
         */
-        while (ptr1 != NULL && ptr1->getTitle() != title)
+        while (ptr1 != nullptr && ptr1->getTitle() != title)
         {
 
             ptr2 = ptr1;
             ptr1 = ptr1->getNext();
         }
-        if (ptr1 == NULL)
+        if (ptr1 == nullptr)
         {
             std::cout << title << " - Was not found" << std::endl;
         }
