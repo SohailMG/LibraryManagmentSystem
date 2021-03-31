@@ -82,7 +82,8 @@ std::string HashTabel::search(std::string title)
                     "Name     : " + ptr->getTitle() + "\n" +
                     "ISBN     : " + std::to_string(ptr->getISBN()) + "\n" +
                     "Quantity : " + std::to_string(ptr->getQuantity()) + "\n" +
-                    "Authors  : " + ptr->showAuthors();
+                    "------------------------------------------------------\n" +
+                    "Authors  :" + ptr->showAuthors();
                 return book;
             }
             else
@@ -164,35 +165,65 @@ int HashTabel::numOfBooks(int index)
     }
 }
 
+/**
+ * @brief removes a book from the table by getting the index of the title
+ * of the book being removed.checks if the index of the table book being removed.
+ * @param title std::string title of book being removed
+ */
 void HashTabel::remove_book(std::string title)
 {
     int index = HashTabel::hash_funtion(title);
 
+    // delcaring pointer to point to the book being removed
     Book *delete_ptr;
+    // declaring two pointers to iterate through the linked list and maintain the order
     Book *ptr1;
     Book *ptr2;
 
+    // first condition - checking if the index has no books
     if (hashT[index]->getTitle() == "Empty")
     {
         std::cout << title << " -  was not found" << std::endl;
     }
+    // second condition - checking if first index matches given title and there are no other books
     else if (hashT[index]->getTitle() == title && hashT[index]->getNext() == NULL)
     {
-        hashT[index]->setTitle("Empty");
-        hashT[index]->setTitle("Empty");
-        hashT[index]->setISBN(0);
-        hashT[index]->setQnty(0);
-        std::cout << "Title  : " << title << std::endl;
-        std::cout << "Status : *Removed*" << std::endl;
+        if (hashT[index]->getQuantity() > 0)
+        {
+            hashT[index]->setQnty(hashT[index]->getQuantity() - 1);
+            std::cout << "Title            : " << hashT[index]->getTitle() << std::endl;
+            std::cout << "Copies Remaining : " << hashT[index]->getQuantity() << std::endl;
+        }
+        else
+        {
+            hashT[index]->setTitle("Empty");
+            hashT[index]->setTitle("Empty");
+            hashT[index]->setISBN(0);
+            hashT[index]->setQnty(0);
+            std::cout << "\nTitle  : " << title << std::endl;
+            std::cout << "Status : *Removed*" << std::endl;
+        }
     }
+    // third condition - checking if match is found but there are other books in the linked list
     else if (hashT[index]->getTitle() == title)
     {
-        delete_ptr = hashT[index];
-        hashT[index] = hashT[index]->getNext();
-        delete delete_ptr;
-        std::cout << "Title  : " << title << std::endl;
-        std::cout << "Status : *Removed* " << std::endl;
+        if (hashT[index]->getQuantity() > 0)
+        {
+            hashT[index]->setQnty(hashT[index]->getQuantity() - 1);
+            std::cout << "Title            : " << hashT[index]->getTitle() << std::endl;
+            std::cout << "Copies Remaining : " << hashT[index]->getQuantity() << std::endl;
+        }
+        else
+        {
+            delete_ptr = hashT[index];
+            hashT[index] = hashT[index]->getNext();
+            std::cout << hashT[index]->getQuantity();
+            delete delete_ptr;
+            std::cout << "\nTitle  : " << title << std::endl;
+            std::cout << "Status : *Removed* " << std::endl;
+        }
     }
+    // final condition - checking when first index has no match but there are other books in the linked list
     else
     {
         // setting first pointer to point to the second book object
@@ -216,7 +247,7 @@ void HashTabel::remove_book(std::string title)
         }
         if (ptr1 == NULL)
         {
-            std::cout << title << " Was not found" << std::endl;
+            std::cout << title << " - Was not found" << std::endl;
         }
         else
         {
@@ -226,14 +257,23 @@ void HashTabel::remove_book(std::string title)
             linked list 
             */
             delete_ptr = ptr1;
-            ptr1 = ptr1->getNext();
+            if (delete_ptr->getQuantity() > 0)
+            {
+                delete_ptr->setQnty(delete_ptr->getQuantity() - 1);
+                std::cout << "Title            : " << delete_ptr->getTitle() << std::endl;
+                std::cout << "Copies Remaining : " << delete_ptr->getQuantity() << std::endl;
+            }
+            else
+            {
+                ptr1 = ptr1->getNext();
 
-            // setting second pointer to point to the new item first pointer pointing to
-            ptr2->setNext(ptr1);
+                // setting second pointer to point to the new item first pointer pointing to
+                ptr2->setNext(ptr1);
 
-            delete delete_ptr;
-            std::cout << "Title  : " << title << std::endl;
-            std::cout << "Status : *Removed* " << std::endl;
+                delete delete_ptr;
+                std::cout << "\nTitle  : " << title << std::endl;
+                std::cout << "Status : *Removed* " << std::endl;
+            }
         }
     }
 }
