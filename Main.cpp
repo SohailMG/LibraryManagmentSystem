@@ -9,31 +9,40 @@
 #include <limits>
 /**
  * @brief Main Program Runner
- * TODOs : DEAL WITH COLLISIONs
- * !FIX  : FILE HAS ISSUE AT LINE  396 
  *
  */
 
+/**
+ * @brief out puts a menu to the console and reads in the option
+ * 
+ * @return int option being selected from menu
+ */
 int select_Option()
 {
     int option;
-    std::cout << "\n+----------[MENU]--------+---+"
+    std::cout << "\n\t\t+----------[MENU]---------+---+"
               << std::endl;
-    std::cout << "|Search Book By Title     | 1 |" << std::endl;
-    std::cout << "+-------------------------+---+\n";
-    std::cout << "|Insert New Book          | 2 |" << std::endl;
-    std::cout << "+-------------------------+---+\n";
-    std::cout << "|Remove lost/damaged book | 3 |" << std::endl;
-    std::cout << "+-------------------------+---+\n";
-    std::cout << "|Exit Program             | 0 |" << std::endl;
-    std::cout << "+-------------------------+---+\n"
+    std::cout << "\t\t|Search Book By Title     | 1 |" << std::endl;
+    std::cout << "\t\t+-------------------------+---+\n";
+    std::cout << "\t\t|Insert New Book          | 2 |" << std::endl;
+    std::cout << "\t\t+-------------------------+---+\n";
+    std::cout << "\t\t|Remove lost/damaged book | 3 |" << std::endl;
+    std::cout << "\t\t+-------------------------+---+\n";
+    std::cout << "\t\t|Exit Program             | 0 |" << std::endl;
+    std::cout << "\t\t+-------------------------+---+\n"
               << std::endl;
-    std::cout << "Choose an Option    > ";
+    std::cout << "\t\tChoose an Option    > ";
     std::cin >> option;
 
     return option;
 }
 
+/**
+ * @brief takes string of authors seperated by ; , splits the string
+ * and stores them into a vector
+ * @param s refrence to a string 
+ * @return std::vector<std::string> of authors
+ */
 std::vector<std::string> split(const std::string &s)
 {
     char delim = ';';
@@ -81,34 +90,39 @@ int main(int argc, char const *argv[])
         std::getline(ss, ISBN, '\t');
         std::getline(ss, Q, '\t');
 
-        // authors.push_back(author);
+        // splitting the string of authors by delimeter
         std::vector<std::string> tokens = split(author);
-
+        // storing each author into a vector
         for (size_t i = 0; i < tokens.size(); i++)
         {
             authors.push_back(tokens.at(i));
         }
+        // making a book object and storing the specified data 
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
+        // adding each object into the data strcuture 
         table.insert(b);
         authors.clear();
     }
 
+    // program loop
     while (true)
     {
         try
         {
 
             int option = select_Option();
+            // condition when user chooses to search for a book
             if (option == 1)
             {
                 std::string title;
-                std::cout << "Search (Full) Book Title   > ";
+                std::cout << "\t\tSearch (Full) Book Title   > ";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, title);
                 std::cout << "\n--------------------[RESULTS]-------------------------\n";
                 std::cout << table.search(title) << std::endl;
                 std::cout << "------------------------------------------------------\n";
             }
+            // conditon when user chooses to add a new book
             else if (option == 2)
             {
                 std::string title;
@@ -118,8 +132,9 @@ int main(int argc, char const *argv[])
 
                 // reading in new book data
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Enter Title    > ";
+                std::cout << "\t\tEnter Title    > ";
                 std::getline(std::cin, title);
+                // checking if the new book is already stored in the hash table to prevent dublicate keys
                 if (table.check_dublicates(title))
                 {
                     std::cout << "\n\n------------------[FAILED]-----------------"<<std::endl;
@@ -127,21 +142,22 @@ int main(int argc, char const *argv[])
                     std::cout << "Reason : Book exists "  << std::endl;
                     std::cout << "--------------------------------------------\n";
                 }
+                // adding new book details
                 else
                 {
 
-                    std::cout << "Enter ISBN     > ";
+                    std::cout << "\t\tEnter ISBN     > ";
                     std::cin >> ISBN;
 
-                    std::cout << "Enter Quantity > ";
+                    std::cout << "\t\tEnter Quantity > ";
                     std::cin >> quantity;
 
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    std::cout << "Enter Authors seperated by (;) > ";
+                    std::cout << "\t\tEnter Authors seperated by (;) > ";
                     std::getline(std::cin, author);
                     // splitting authors by del and adding into a vector
                     std::vector<std::string> tokens = split(author);
-
+                    // splitting the given authors list by the delimerte
                     for (size_t i = 0; i < tokens.size(); i++)
                     {
                         authors.push_back(tokens.at(i));
@@ -156,20 +172,28 @@ int main(int argc, char const *argv[])
                     std::cout << "------------------------------" << std::endl;
                 }
             }
+            // condition when user chooses to remove lost or damaged book
             else if (option == 3)
             {
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::string title;
-                std::cout << "Enter Book Title  > ";
+                std::cout << "\t\tEnter Book Title  > ";
                 std::getline(std::cin, title);
                 std::cout << "\n\n---------------------[BOOK]-----------------------\n";
                 table.remove_book(title);
                 std::cout << "--------------------------------------------------\n";
             }
-            else
+            else if (option == 0)
             {
                 break;
+            }else{
+                std::cout << "\t\t[" << option << "]" << " is invalid choose [1][2][3][0]" << std::endl;
             }
+            
+            
+            std::string key;
+            std::cout << "type any key to continue  > ";
+            std::cin >> key;
         }
         catch (const std::exception &e)
         {
