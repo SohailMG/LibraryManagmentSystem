@@ -18,9 +18,6 @@ Hash::Hash()
     {
         hashT[i] = new Book;
         hashT[i]->setTitle("Empty");
-        hashT[i]->setISBN(0);
-        hashT[i]->setQnty(0);
-        hashT[i]->setAuthors(authors);
         hashT[i]->setNext(nullptr);
     }
 }
