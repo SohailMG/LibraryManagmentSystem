@@ -1,8 +1,14 @@
 #include "Book.hpp"
-
+/**
+ * Book.cpp
+ * AUTHOR  :  M00716650
+ * CREATED :  27/03/2021
+ * UPDATED :  16/04/2021  
+ * */
 Book::Book(){
     
 }
+
 Book::Book(std::string title, std::vector<std::string> authors, unsigned long ISBN, int quantity)
 {
     this->title = title;
@@ -51,13 +57,28 @@ void Book::setNext(Book *next)
 Book* Book::getNext(){
     return this->next;
 }
+/**
+ * @brief loops through vector of authors and adds them to a string
+ * 
+ * @return std::string of authors 
+ */
 std::string Book::showAuthors(){
     std::string authorsList;
     for (size_t i = 0; i < this->authors.size(); i++)
     {
             
-        authorsList = authorsList + " [" + std::to_string(i + 1)+"] - " +  this->authors.at(i)  + "\n\t  ";
+        authorsList = authorsList + " [" + std::to_string(i + 1)+"] - " +  this->authors.at(i)  + "\n\t   ";
         
     }
     return authorsList;
+}
+ std::ostream& operator<<(std::ostream &out, Book &b){
+    
+    out << "Title     : " << b.getTitle() << "\n"
+        << "ISBN      : " << b.getISBN()<< "\n"
+        << "Quantity  : " << b.getQuantity() << "\n"
+        <<"------------------------------------------------------\n"
+        << "Author(s) :" << b.showAuthors() << std::endl;
+
+    return out;
 }

@@ -9,6 +9,10 @@
 #include <limits>
 /**
  * @brief Main Program Runner
+ * Main.cpp
+ * AUTHOR  :  M00716650
+ * CREATED :  27/03/2021
+ * UPDATED :  16/04/2021 
  *
  */
 
@@ -102,6 +106,8 @@ int main(int argc, char const *argv[])
         // adding each object into the data strcuture 
         table.insert(b);
         authors.clear();
+
+        
     }
 
     // program loop
@@ -119,7 +125,8 @@ int main(int argc, char const *argv[])
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, title);
                 std::cout << "\n--------------------[RESULTS]-------------------------\n";
-                std::cout << table.search(title) << std::endl;
+                Book b = table.search(title);
+                std::cout << b << std::endl;
                 std::cout << "------------------------------------------------------\n";
             }
             // conditon when user chooses to add a new book
@@ -189,8 +196,6 @@ int main(int argc, char const *argv[])
             }else{
                 std::cout << "\t\t[" << option << "]" << " is invalid choose [1][2][3][0]" << std::endl;
             }
-            
-            
             std::string key;
             std::cout << "type any key to continue  > ";
             std::cin >> key;

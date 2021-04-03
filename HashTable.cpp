@@ -5,8 +5,15 @@
 #include <fstream>
 #include <cstdio>
 #include "HashTable.hpp"
-
 /**
+ * HashTable.cpp
+ * AUTHOR  :  M00716650
+ * CREATED :  27/03/2021
+ * UPDATED :  16/04/2021  
+ * 
+ */
+/**
+ * 
  * @brief Construct a new Hash Tabel:: Hash Tabel object
  * and initialises the current table values to empty or nullptr
  * 
@@ -28,7 +35,7 @@ Hash::Hash()
  * @param key title of book as string
  * @return int hash value
  */
-int Hash::hash_funtion(std::string key)
+unsigned long Hash::hash_funtion(std::string key)
 {
 
     int hash = 21;
@@ -50,49 +57,41 @@ int Hash::hash_funtion(std::string key)
  * @param title string title of book
  * @return std::string of book details
  */
-std::string Hash::search(std::string title)
+
+Book Hash::search(std::string title)
 {
     // storing the index value of the given book title
     unsigned long index = Hash::hash_funtion(title);
     //
-    Book *ptr = hashT[index];
-    std::string book;
+    Book *book_ptr = hashT[index];
+    Book book;
     // checking if the first elm of the table cell has the default
-    if (ptr->getTitle() == "Empty")
+    if (book_ptr->getTitle() == "Empty")
     {
-        std::cout << index << " Is Empty" << std::endl;
+        std::cout << "Book not found" << std::endl;
     }
     else if (hashT[index]->getTitle() == title)
     {
-        book = "Name     : " + hashT[index]->getTitle() + "\n" +
-               "ISBN     : " + std::to_string(hashT[index]->getISBN()) + "\n" +
-               "Quantity : " + std::to_string(hashT[index]->getQuantity()) + "\n" +
-               "------------------------------------------------------\n" +
-               "Authors  :" + hashT[index]->showAuthors();
+        book = *hashT[index];
 
         return book;
     }
     else
     {
         bool title_found = false;
-        while (ptr != nullptr && title_found == false)
+        while (book_ptr != nullptr && title_found == false)
         {
-            if (ptr->getTitle() == title)
+            if (book_ptr->getTitle() == title)
             {
-                book =
-                    "Name     : " + ptr->getTitle() + "\n" +
-                    "ISBN     : " + std::to_string(ptr->getISBN()) + "\n" +
-                    "Quantity : " + std::to_string(ptr->getQuantity()) + "\n" +
-                    "------------------------------------------------------\n" +
-                    "Authors  :" + ptr->showAuthors();
+                book = *book_ptr;                
                 title_found = true;
                 return book;
             }
             else
             {
-                ptr = ptr->getNext();
+                book_ptr = book_ptr->getNext();
             }
-            if (ptr == nullptr)
+            if (book_ptr == nullptr)
             {
                 std::cout << " Book was not found " << std::endl;
             }
@@ -109,7 +108,6 @@ std::string Hash::search(std::string title)
  * point to the new item using chaining.
  * @param book book object being added
  */
-
 void Hash::insert(Book book)
 {
 
@@ -181,9 +179,6 @@ void Hash::remove_book(std::string title)
         else
         {
             hashT[index]->setTitle("Empty");
-            hashT[index]->setTitle("Empty");
-            hashT[index]->setISBN(0);
-            hashT[index]->setQnty(0);
             std::cout << "\nTitle  : " << title << std::endl;
             std::cout << "Status : *Removed*" << std::endl;
         }
