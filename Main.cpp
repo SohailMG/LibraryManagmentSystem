@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include <list>
-#include <ctype.h>
 #include <limits>
 /**
  * @brief Main Program Runner
@@ -61,19 +60,18 @@ std::vector<std::string> split(const std::string &s)
     return result;
 }
 
+// MAIN PROGRAM 
 int main(int argc, char const *argv[])
 {
     if (argc < 2)
     {
         std::cout << "\tmissing argument\n";
-        std::cout << "Expected <Program> <outputfile>" << std::endl;
+        std::cout << "Expected <Executable> <datafile>" << std::endl;
         return 0;
     }
 
     // declaring a hashtable object;
     Hash table;
-
-    //Deep Reinforcement Learning Hands-On	Maxim Lapan	9781788839303	7
 
     std::ifstream datafile(argv[1]);
     std::string data;
@@ -82,13 +80,11 @@ int main(int argc, char const *argv[])
     std::ofstream MyFile("searches.txt");
     while (getline(datafile, data))
     {
-        // Output the text from the file
-        // authors.clear();
         std::stringstream ss(data);
         std::string title, author, ISBN, Q;
 
+        // reading file data seperated by tabs
         std::stringstream split_authors(author);
-
         std::getline(ss, title, '\t');
         std::getline(ss, author, '\t');
         std::getline(ss, ISBN, '\t');
