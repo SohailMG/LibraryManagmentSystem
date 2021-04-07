@@ -17,7 +17,7 @@ class Hash
 private:
      static const int TABEL_SIZE = 271;
      int ll_size;
-     std::vector<Book> *table;
+    //  std::vector<Book> *table;
      Book* hashT[TABEL_SIZE];
 
 public:
