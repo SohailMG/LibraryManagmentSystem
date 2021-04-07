@@ -6,6 +6,6 @@ DEPs = Main.cpp Book.cpp HashTable.cpp
 Program:$(OBJs)
 		$(GXX) $(FLAGS) $(OBJs) -o Program
 Main.o:$(DEPs)
-		$(GXX) -c $(DEPs) 
+		$(GXX) -c $(DEPs) -g
 clean:
 	rm *.o Program

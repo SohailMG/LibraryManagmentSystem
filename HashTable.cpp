@@ -23,9 +23,7 @@ Hash::Hash()
     std::vector<std::string> authors;
     for (size_t i = 0; i < this->TABEL_SIZE; i++)
     {
-        hashT[i] = new Book;
-        hashT[i]->setTitle("Empty");
-        hashT[i]->setNext(nullptr);
+        hashT[i] = nullptr;
     }
 }
 /**
@@ -66,9 +64,11 @@ Book Hash::search(std::string title)
     Book *book_ptr = hashT[index];
     Book book;
     // checking if the first elm of the table cell has the default
-    if (book_ptr->getTitle() == "Empty")
+    
+    if (book_ptr == nullptr)
     {
         std::cout << "Book not found" << std::endl;
+        return book;
     }
     else if (hashT[index]->getTitle() == title)
     {
@@ -91,10 +91,6 @@ Book Hash::search(std::string title)
             {
                 book_ptr = book_ptr->getNext();
             }
-            if (book_ptr == nullptr)
-            {
-                std::cout << " Book was not found " << std::endl;
-            }
         }
     }
 
@@ -115,13 +111,15 @@ void Hash::insert(Book book)
     // getting the hash value of the book title being added
     unsigned long index = Hash::hash_funtion(title);
     // checking if the index of the table cell is empty
-    if (hashT[index]->getTitle() == "Empty")
+    if (hashT[index] == nullptr)
     {
         // overriding the current cell with new book data
+        hashT[index] = new Book;
         hashT[index]->setTitle(book.getTitle());
         hashT[index]->setISBN(book.getISBN());
         hashT[index]->setQnty(book.getQuantity());
         hashT[index]->setAuthors(book.getAuthors());
+        hashT[index]->setNext(nullptr);
     }
     // when index already has a book object stored
     else
@@ -163,7 +161,7 @@ void Hash::remove_book(std::string title)
     Book *ptr2;
 
     // first condition - checking if the index has no books
-    if (hashT[index]->getTitle() == "Empty")
+    if (hashT[index] == nullptr)
     {
         std::cout << title << " -  was not found" << std::endl;
     }

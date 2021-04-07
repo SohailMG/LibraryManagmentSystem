@@ -73,12 +73,15 @@ std::string Book::showAuthors(){
     return authorsList;
 }
  std::ostream& operator<<(std::ostream &out, Book &b){
-    
+
+    if (b.title != "")
+    {
     out << "Title     : " << b.getTitle() << "\n"
         << "ISBN      : " << b.getISBN()<< "\n"
         << "Quantity  : " << b.getQuantity() << "\n"
         <<"------------------------------------------------------\n"
         << "Author(s) :" << b.showAuthors() << std::endl;
 
+    }else out << "Not found";
     return out;
 }
