@@ -15,12 +15,11 @@
 /**
  * 
  * @brief Construct a new Hash Tabel:: Hash Tabel object
- * and initialises the current table values to empty or nullptr
+ * and initialises the current table values to  nullptr
  * 
  */
 Hash::Hash()
 {
-    std::vector<std::string> authors;
     for (size_t i = 0; i < this->TABEL_SIZE; i++)
     {
         hashT[i] = nullptr;
@@ -67,7 +66,6 @@ Book Hash::search(std::string title)
     
     if (book_ptr == nullptr)
     {
-        std::cout << "Book not found" << std::endl;
         return book;
     }
     else if (hashT[index]->getTitle() == title)

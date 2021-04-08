@@ -1,0 +1,419 @@
+Understanding Machine Learning 250
+Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow 62
+The Hundred-page Machine Learning Book 262
+Concepts in Programming Languages 256
+Understanding MySQL Internals 123
+Urban Operating Systems 118
+Deep Reinforcement Learning Hands-On 152
+Modern Graph Theory 205
+Advanced Graph Theory and Combinatorics 213
+Graph Database Fundamentals 183
+Transfer in Reinforcement Learning Domains 28
+The Spark 42
+An Introduction to Complex Analysis 145
+Principles of Modern Operating Systems 198
+Neural Networks and Deep Learning 149
+Pro SQL Server 2005 Assemblies 117
+Reinforcement Learning and Approximate Dynamic Programming for Feedback Control 36
+Muriel Spark's Postmodernism 60
+Dynamic Programming 20
+UNIX Administration 229
+Hitchhiker's Guide to SQL Server 2000 Reporting Services 124
+Operating Systems In Depth: Design and Programming 109
+Apache Hadoop YARN 225
+Practical Hadoop Security 20
+Operating Systems and Software Diagnostics 75
+High-Performance Computing in Finance 18
+Machine Learning with Spark 144
+Programming Pearls 197
+Design of Experiments for Reinforcement Learning 65
+An Introduction to Object-Oriented Programming in C++ 12
+The The Reinforcement Learning Workshop 242
+Parallel and Concurrent Programming in Haskell 102
+Logic Programming '89 260
+Artificial Neural Networks for Engineering Applications 237
+Decentralised Reinforcement Learning in Markov Games 147
+Machine Learning for Hackers 219
+Algorithms for Approximation 139
+UNIX Systems Programming 156
+Spark 263
+Fundamentals of Artificial Neural Networks 39
+The Little Book of Algorithms 8
+Transforms and Fast Algorithms for Signal Analysis and Representations 10
+Deep Reinforcement Learning 205
+Basics Of Os Unix And Shell Programming 16
+An Introduction to Neural Networks 57
+Grokking Deep Reinforcement Learning 252
+Math, Science, and Unix Underpants 135
+Common LISP 169
+Linux and Unix Shell Pocket Programmer 83
+Advances in Genetic Programming 14
+Extreme Programming Explained 182
+Machine Learning 207
+High-Performance Computing Using FPGAs 30
+Probabilistic Machine Learning for Civil Engineers 192
+Unix System Management 3
+Beginning PHP and MySQL 110
+Nonlinear Programming 245
+Complex Analysis with Applications 128
+Operating Systems Concepts 174
+Approximation Algorithms 51
+SQL Server Integration Services 270
+High Performance Computing: Technology, Methods and Applications 163
+A First Look at Graph Theory 78
+The Haskell School of Expression 66
+UNIX Shell Programming 171
+Operating System (A Practical App) 100
+High Performance Computing for Big Data 109
+Special Ops: Host and Network Security for Microsoft Unix and Oracle 102
+High-Performance Computing Infrastructure for South East Europe's Research Communities 180
+High Performance Computing in Remote Sensing 150
+Advanced Operating Systems and Kernel Applications: Techniques and Technologies 13
+SQL Injection Attacks and Defense 59
+Embedded Operating Systems 121
+Insights in Reinforcement Learning 98
+Mathematics for Machine Learning 108
+Beginning MySQL 49
+MySQL Client-Server Applications with Visual FoxPro 228
+PHP and MySQL for Dynamic Web Sites 51
+Learning Unix for Mac OS X Tiger 96
+R: Predictive Analysis 203
+Fuel Economy 95
+Complex Analysis and Geometry 122
+Algorithms for Reinforcement Learning 148
+Some Topics in Graph Theory 88
+Graph Theory with Applications to Engineering and Computer Science 86
+Permutation Group Algorithms 126
+Real-World Hadoop 254
+UNIX For Dummies 73
+Operating System Security 84
+High Performance Computing in Science and Engineering ' 18 95
+Studies in Graph Theory 34
+Oracle SQL*Plus 269
+Foundation of Operating Systems 93
+Progress in Distributed Operating Systems and Distributed Systems Management 123
+Practical Common Lisp 128
+Hadoop MapReduce v2 Cookbook - Second Edition 264
+Learning Spark 27
+Mastering Reinforcement Learning with Python 14
+Escape from Innocence 131
+SQL For Dummies 260
+Introduction To Algorithms 173
+Concurrent Programming in Java 222
+Visual Editing on Unix 197
+Industrial Applications of High-Performance Computing 40
+Algorithms for Computer Algebra 46
+High Performance Computing in Science and Engineering ' 06 92
+Interactive Multiple Goal Programming 130
+Python Machine Learning 68
+An Introduction to Genetic Algorithms 63
+AN INTRODUCTION TO OPERATING SYSTEMS : CONCEPTS AND PRACTICE (GNU/LINUX AND WINDOWS), FIFTH EDITION 75
+Statistics for Machine Learning 39
+Linear Programming and Extensions 2
+Securing Hadoop 133
+Dive Into Algorithms 40
+Oracle PL/SQL Programming 113
+Neural Networks 174
+Linear Programming 185
+Introduction to Neural Networks with Java 202
+Professional SQL Server 2005 Programming 120
+Fractional Graph Theory 77
+Unix Backup and Recovery 121
+The Practitioner's Guide to Graph Data 237
+Recursive Algorithms 158
+Genetic Algorithms + Data Structures = Evolution Programs 231
+Sams Teach Yourself MySQL in 21 Days 131
+Interpretable Machine Learning 245
+Algorithms and Architectures for Parallel Processing 219
+Understanding SQL and Java Together 30
+NEURAL NETWORKS, FUZZY LOGIC AND GENETIC ALGORITHM 17
+Complex Analysis 262
+Pro SQL Server 2005 Replication 231
+High Performance SQL Server DBA 31
+Reinforcement Learning for Adaptive Dialogue Systems 191
+Beginning Unix 31
+NoSQL For Dummies 178
+Principles of Complex Analysis 233
+NoSQL for Mere Mortals 107
+Joe Celko's SQL for Smarties 51
+Algorithms 258
+What is Mathematics? 11
+Number Theory and Its History 56
+All the Poems of Muriel Spark 208
+Programming Embedded Systems in C and C++ 125
+Head First Programming 233
+An Introduction to Deep Reinforcement Learning 88
+Contemporary High Performance Computing 78
+Vocation and Identity in the Fiction of Muriel Spark 254
+Foundations of Machine Learning 20
+Introduction to Distributed Algorithms 37
+Deep Reinforcement Learning with Python 0
+Types and Programming Languages 50
+Qualitative Spatial Abstraction in Reinforcement Learning 178
+Programming in Haskell 266
+Basic Real Analysis 165
+UNIX: The Complete Reference, Second Edition 158
+Reinforcement Learning, second edition 199
+The Haskell School of Music 49
+Statistical Reinforcement Learning 167
+PROC SQL by Example 245
+Pattern Recognition and Neural Networks 25
+MySQL in a Nutshell 88
+Learning Neo4j 233
+Algorithm Design with Haskell 96
+Linux and the Unix Philosophy 86
+Hadoop Blueprints 94
+Pulsed Neural Networks 14
+Reinforcement Learning and Dynamic Programming Using Function Approximators 33
+C4.5 239
+Data Mining: Practical Machine Learning Tools and Techniques 180
+JDBC Metadata, MySQL, and Oracle Recipes 151
+Machine Learning in Non-stationary Environments 0
+Motivated Reinforcement Learning 222
+Unix Unleashed 39
+UNIX Network Programming: The sockets networking API 256
+Beginning Haskell 48
+Practical UNIX 208
+The Oracle Book 12
+Hadoop For Dummies 81
+Hadoop Beginner's Guide 249
+Reinforcement and Systemic Machine Learning for Decision Making 49
+Grokking Artificial Intelligence Algorithms 181
+Pro MySQL 254
+Operating Systems Foundations with Linux on the Raspberry Pi 98
+Lisp in Small Pieces 220
+Microsoft SQL Server 2000 235
+Sams Teach Yourself SQL Server 2005 Express in 24 Hours 110
+Principles of Artificial Neural Networks 109
+Oracle SQL 78
+Life-Spark Stories 114
+High Performance Computing Systems and Applications 97
+Graphs, Networks and Algorithms 11
+UNIX 74
+Automotive Spark-Ignited Direct-Injection Gasoline Engines 174
+Evolving the High Performance Computing and Communications Initiative to Support the Nation's Information Infrastructure 0
+A River 96
+Hadoop: The Definitive Guide 153
+Programming in Scala 42
+Learning PHP, MySQL, and JavaScript 64
+Practical Goal Programming 103
+SQL 261
+UNIX for OpenVMS Users 49
+Introduction to High Performance Scientific Computing 38
+Mac OS X for Unix Geeks (Leopard) 60
+Recent Advances in Reinforcement Learning 161
+Complex Analysis with MATHEMATICA® 69
+Computational Ecology 254
+Linear Programming and Economic Analysis 69
+Optimizing Hadoop for MapReduce 18
+Statistical Physics, Optimization, Inference, and Message-Passing Algorithms 229
+Neural Network Learning 94
+Oracle DBA on Unix and Linux 15
+Deep Reinforcement Learning in Action 6
+Graph Database 256
+Pro Apache Hadoop 216
+Machine Learning and Data Science Blueprints for Finance 71
+A Textbook of Graph Theory 240
+Oracle PL/SQL Programming: A Developer's Workbook 98
+The Delphic Oracle 43
+Expert MySQL 39
+Modern Operating Systems: Global Edition 32
+Quasi-Dimensional Simulation of Spark Ignition Engines 64
+Tru64 UNIX System Administrator's Guide 41
+Oracle Pl/Sql Programming In Simple Steps 7
+An Introduction to Bioinformatics Algorithms 12
+Programming In C# 170
+SQL & NoSQL Databases 102
+Monitoring Hadoop 92
+Professional Hadoop Solutions 223
+UNIX in Easy Steps 230
+Graph Theory, 1736-1936 101
+Heterogeneity, High Performance Computing, Self-Organization and the Cloud 241
+A Practical Approach To Data Structures And Algorithms 151
+Algorithms and Computation 174
+Your Unix: The Ultimate Guide 239
+Process Neural Networks 128
+Practical Web Development with Haskell 134
+SQL Server 7 Essential Reference 212
+CNC Programming Techniques 62
+Unix and Shell Programming 64
+Proceedings of the International Workshop on Applications of Neural Networks to Telecommunications 89
+Machine Learning and Artificial Intelligence 151
+Visual Complex Analysis 109
+Modern Operating Systems 227
+High Performance Computing - HiPC 2001 236
+Microprocessors & their Operating Systems 243
+Foundations of Algorithms Using C++ Pseudocode 247
+Unix for Oracle DBAs Pocket Reference 113
+Linear Programming and its Applications 11
+Functions of One Complex Variable I 263
+Learning the Unix Operating System 36
+Problems and Solutions for Complex Analysis 126
+TEXPLORE: Temporal Difference Reinforcement Learning for Robots and Time-Constrained Domains 181
+Complex Analysis and Applications, Second Edition 64
+Parallel Programming 124
+UNDERSTANDING UNIX 4
+Handbook of Graph Theory 101
+Principles of Operating Systems 95
+Foundations of Algorithms 71
+Python for Unix and Linux System Administration 224
+Programming with ANSI and Turbo C 267
+MySQL Stored Procedure Programming 20
+Learning MySQL 223
+All the Stories of Muriel Spark 166
+High Performance MySQL 148
+Pro T-SQL 2005 Programmer's Guide 12
+The Rust Programming Language (Covers Rust 2018) 166
+Head First SQL 131
+SQL Server 2005 T-SQL Recipes 135
+Neo4j Graph Data Modeling 88
+UNIX Document Processing and Typesetting 54
+Nature-inspired Metaheuristic Algorithms 238
+PHP and MySQL by Example 164
+Introduction to Real Analysis 140
+Adaptive Representations for Reinforcement Learning 195
+UNIX Operating System 94
+Efficient and scalable graph view maintenance for deductive graph databases based on generalized discrimination networks 21
+Paradigms of Artificial Intelligence Programming 81
+Number Theory 221
+Algorithms and Data Structures 234
+SQL Functions Programmer's Reference 175
+Fast Data Processing With Spark 193
+Introduction to Machine Learning 154
+Introductory Complex Analysis 241
+MySQL 188
+Programming In C 135
+Handbook of Graph Theory, Second Edition 174
+Pro SQL Server 2005 High Availability 202
+Practical Haskell 50
+Introductory Graph Theory 81
+Real World Haskell 75
+Unix Power Tools 204
+Complex Analysis 2 73
+CNC Programming Handbook 90
+Oracle PL/SQL by Example 196
+Progress in Neural Networks 222
+ARTIFICIAL NEURAL NETWORKS 8
+Algebraic Graph Theory 211
+SCO UNIX in a Nutshell 235
+Edinburgh Companion to Muriel Spark 111
+Operating Systems and Services 247
+A Spark in the Darkness 193
+Machine Learning For Dummies 206
+Data Analytics with Hadoop 39
+The Definitive Guide to MySQL 5 3
+Understanding Operating Systems 167
+Machine Learning in Computer Vision 100
+Practical Hadoop Ecosystem 120
+High-Performance Computing and Networking 211
+Haskell in Depth 154
+Mastering Spark with R 197
+Programming Languages: Implementations, Logics, and Programs 62
+Deep Learning 167
+An Introduction to Complex Analysis and Geometry 5
+Operating Systems: 182
+Statistics and Neural Networks 257
+Neural Networks in Telecommunications 192
+Machine Learning for Beginners 168
+Python Programming 224
+Graph Algorithms 246
+A Practical Guide to UNIX for Mac OS X Users 191
+Harmony Search Algorithms for Structural Design Optimization 201
+Microsoft SQL Server 2000 Unleashed 104
+Graph Theory and Its Engineering Applications 246
+Dynamic Programming for Coding Interviews 214
+Learning Hadoop 2 199
+The Real Numbers and Real Analysis 140
+Classic Operating Systems 49
+Introduction to Neural Networks Using Matlab 6.0 121
+DIVINE SPARK 72
+High Performance Computing and the Art of Parallel Programming 162
+High Performance Computing 118
+Thinking Functionally with Haskell 117
+An Introduction to the Analysis of Algorithms 252
+Muriel Spark 104
+Graph Theory with Applications 239
+Foundations of Deep Reinforcement Learning 18
+Core Python Programming 107
+Machine Learning with R, the tidyverse, and mlr 253
+Tru64 UNIX File System Administration Handbook 174
+Tools and Techniques for High Performance Computing 19
+The UNIX Philosophy 143
+Extremal Graph Theory 155
+Beginning Spatial with SQL Server 2008 77
+Multi-Agent Coordination 205
+Linear Programming and Network Flows 231
+Hadoop: Data Processing and Modelling 219
+Operating Systems 124
+Introduction to Parallel Algorithms 237
+Applied Reinforcement Learning with Python 50
+Randomized Algorithms 243
+Syntony and Spark 51
+Elements of Machine Learning 229
+Artificial Intelligence And Automation 177
+Operating System, 2nd Edition 9
+Spark Discharge 117
+Introduction to High Performance Computing for Scientists and Engineers 110
+Introduction to Complex Analysis 209
+Microsoft SQL Server 2005 Reporting Services For Dummies 196
+Reinforcement Learning 62
+Tools for High Performance Computing 2017 188
+Systems Programming and Operating Systems 3
+Introduction to Genetic Algorithms 127
+Practical Oracle SQL 212
+Topological Graph Theory 199
+Beginning SQL Server 2005 Express Database Applications with Visual Basic Express and Visual Web Developer Express 177
+Developing Web Apps with Haskell and Yesod 121
+Multi-Objective Programming and Goal Programming 37
+Artificial Neural Networks: Formal Models and Their Applications – ICANN 2005 242
+Operating Systems and Middleware 162
+Spectral Graph Theory 151
+Graph Databases in Action 172
+Distributed Operating Systems 227
+Understanding the New SQL 174
+The Elements of Complex Analysis 63
+Nature-Inspired Optimization Algorithms for Fuzzy Controlled Servo Systems 246
+REAL ANALYSIS 144
+Efficient Reinforcement Learning Using Gaussian Processes 143
+Python Programming in Context 160
+MCITP Developer: Microsoft SQL Server 2005 Data Access Design and Optimization Study Guide 138
+Haskell Programming from First Principles 223
+Genetic Programming 14
+Operating Systems Engineering 203
+Iterative Dynamic Programming 180
+Stream Processing with Apache Spark 105
+Genetic Algorithms and Engineering Optimization 20
+Neural Networks for Control 218
+Microsoft SQL Server 2000 DBA Survival Guide 258
+PHP and MySQL Manual 74
+A Practical Approach to High-Performance Computing 112
+The Guru's Guide to SQL Server Architecture and Internals 84
+Oracle 11G: With Pl/Sql Approach 29
+MySQL Administrator's Bible 93
+SQL Anywhere Studio 9 Developer's Guide 4
+Unix Concepts And Applications 188
+Graph Theory 102
+Algorithmic Graph Theory 189
+Introduction to Graph Theory 49
+COMBINATORICS AND GRAPH THEORY 249
+Learning SQL 25
+Advances in Neural Networks - ISNN 2007 15
+Get Programming with Haskell 2
+Practical Automated Machine Learning on Azure 212
+Algorithms in a Nutshell 158
+Chemical Graph Theory 111
+High-Performance Computing 131
+Parallel Programming for Modern High Performance Computing Systems 152
+Neural Networks in Business Forecasting 31
+Applying Neural Networks 229
+Graph Theory Applications 34
+MySQL Cookbook 230
+PThreads Programming 106
+Approximation Algorithms for Complex Systems 65
+Neural Networks in Finance 61
+Learn You a Haskell for Great Good! 104
+Land of Lisp 5
+Handbook of Complex Analysis 261
+Probability and Computing 56
+Graph Theory and Interconnection Networks 242
+Graph Databases 100

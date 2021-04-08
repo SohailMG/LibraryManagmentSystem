@@ -101,10 +101,13 @@ int main(int argc, char const *argv[])
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
         // adding each object into the data strcuture 
         table.insert(b);
+        MyFile << (table.search(b.getTitle())).getTitle()  << " " << table.hash_funtion(b.getTitle())<< std::endl;
         authors.clear();
+
 
         
     }
+    MyFile.close();
 
     // program loop
     while (true)
