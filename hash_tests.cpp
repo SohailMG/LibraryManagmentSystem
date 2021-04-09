@@ -55,4 +55,33 @@ TEST_CASE("removing books","[Remove]"){
       REQUIRE(h.check_dublicates("of mice and men")== FALSE);
   
 }
+/**
+ * @brief testing when searching for two books with same hash value.
+ * then search function should only return the matching book title
+ * and not the first book in the table cell
+ */
+TEST_CASE("testing search function","[search]"){
+  // inserting two book objects that have the hash value 
+  std::vector<std::string> authors;
+  authors.push_back("John Steinbeck");
+  authors.push_back("Tom H");
+  Book book1 = Book("Complex Analysis with Applications",authors,9780130457868,3);
+  Book book2 = Book("Practical Common Lisp",authors,9780130457868,3);
+
+  // checking that hash value for both books are equal
+  REQUIRE(h.hash_funtion(book1.getTitle()) == h.hash_funtion(book2.getTitle()));
+  h.insert(book1);
+  h.insert(book2);
+  /* 
+  performing a search for first book and second book by it's title 
+  and checking that returned result matches searched title
+  */
+  Book result1 = h.search(book1.getTitle());
+  REQUIRE(result1.getTitle() == book1.getTitle());
+
+  Book result2 = h.search(book2.getTitle());
+  REQUIRE(result2.getTitle() == book2.getTitle());
+
+
+}
 
