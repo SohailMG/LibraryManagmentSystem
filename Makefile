@@ -8,4 +8,4 @@ Program:$(OBJs)
 Main.o:$(DEPs)
 		$(GXX) -c $(DEPs) -g
 clean:
-	rm *.o Program
+	rm *.o a.out Program

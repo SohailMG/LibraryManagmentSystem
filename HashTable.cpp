@@ -268,7 +268,7 @@ bool Hash::check_dublicates(std::string title)
     Book *ptr = hashT[index];
     bool exists = false;
     // checking if the first elm of the table cell has the default
-    if (ptr->getTitle() == "Empty")
+    if (ptr == nullptr)
     {
         exists = false;
     }
