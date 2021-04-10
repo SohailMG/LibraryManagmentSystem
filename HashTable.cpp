@@ -30,7 +30,7 @@ Hash::Hash(int size)
         table[i] = nullptr;
     }
 }
-// destructure - releases memory back
+// destructure
 Hash::~Hash()
 {
     delete[] this->table;

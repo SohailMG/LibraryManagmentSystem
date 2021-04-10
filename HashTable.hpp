@@ -20,7 +20,7 @@ private:
     Book **table;
 
 public:
-    Hash(int);
+     Hash(int size);
     ~Hash();
 
     unsigned long hash_funtion(std::string key);

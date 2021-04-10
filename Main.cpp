@@ -60,7 +60,7 @@ std::vector<std::string> split(const std::string &s)
     return result;
 }
 
-// MAIN PROGRAM 
+// MAIN PROGRAM
 int main(int argc, char const *argv[])
 {
     if (argc < 2)
@@ -70,13 +70,11 @@ int main(int argc, char const *argv[])
         return 0;
     }
 
-    // declaring a hashtable object and the table size
-    Hash table = Hash(317);
-
     std::ifstream datafile(argv[1]);
     std::string data;
     std::vector<std::string> tokens;
     std::vector<std::string> authors;
+    std::vector<Book> books;
     std::ofstream MyFile("searches.txt");
     int lines_count = 0;
     while (getline(datafile, data))
@@ -98,18 +96,22 @@ int main(int argc, char const *argv[])
         {
             authors.push_back(tokens.at(i));
         }
-        // making a book object and storing the specified data 
+        // making a book object and storing them into a vector
         Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
-        // adding each object into the data strcuture 
-        table.insert(b);
-        MyFile << (table.search(b.getTitle())).getTitle()  << " " << table.hash_funtion(b.getTitle())<< std::endl;
+        books.push_back(b);
         authors.clear();
         lines_count++;
-        
-        
     }
-    std::cout << lines_count;
-    MyFile.close();
+
+    // declaring a hashtable object and the table size
+    Hash table = Hash(lines_count);
+    // storing each book object into the table
+    for (size_t i = 0; i < books.size(); i++)
+    {
+        table.insert(books.at(i));
+    }
+
+    
 
     // program loop
     while (true)
@@ -145,9 +147,9 @@ int main(int argc, char const *argv[])
                 // checking if the new book is already stored in the hash table to prevent dublicate keys
                 if (table.check_dublicates(title))
                 {
-                    std::cout << "\n\n------------------[FAILED]-----------------"<<std::endl;
+                    std::cout << "\n\n------------------[FAILED]-----------------" << std::endl;
                     std::cout << "Book   : " << title << std::endl;
-                    std::cout << "Reason : Book exists "  << std::endl;
+                    std::cout << "Reason : Book exists " << std::endl;
                     std::cout << "--------------------------------------------\n";
                 }
                 // adding new book details
@@ -194,8 +196,11 @@ int main(int argc, char const *argv[])
             else if (option == 0)
             {
                 break;
-            }else{
-                std::cout << "\t\t[" << option << "]" << " is invalid choose [1][2][3][0]" << std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t[" << option << "]"
+                          << " is invalid choose [1][2][3][0]" << std::endl;
             }
             std::string key;
             std::cout << "type any key to continue  > ";
