@@ -2,10 +2,21 @@
 #include "catch.hpp"
 #include "HashTable.hpp"
 #include "Book.hpp"
+/**
+ * @brief This file performs all unit tests for the hash table class
+ * and it's main operations including search,insert and remove
+ * @see README.md for compilation command
+ * 
+ * hash_tests.cpp
+ * AUTHOR  :  M00716650
+ * CREATED :  8/03/2021
+ * UPDATED :  16/04/2021 
+ * 
+ */
 
-Hash h = Hash();
+
+Hash h = Hash(317);
 Book b = Book();
-
 
 // testing hash function giving different output for each key
 TEST_CASE("testing hash function", "[hash]")
@@ -19,7 +30,7 @@ TEST_CASE("testing hash function", "[hash]")
 TEST_CASE("testing ISBN gets stored entirly","[ISBN]")
 {
   b.setISBN(9780130457868);
-  REQUIRE(b.getISBN()== 9780130457868);
+  REQUIRE(b.getISBN() == 9780130457868);
 }
 // testing insert functionality when inserting dublicate books
 TEST_CASE("testing dublicate insertion of books","[Insert]")
@@ -28,10 +39,11 @@ TEST_CASE("testing dublicate insertion of books","[Insert]")
   authors.push_back("J. B. Priestley");
   authors.push_back("Tom H");
   Book book = Book("Inspector Calls",authors,9780130457868,2);
-
-  REQUIRE(h.check_dublicates(book.getTitle()) == FALSE);
+  // checking for dublicates returning false when book is not already stored
+  REQUIRE(h.check_dublicates(book.getTitle()) == false);
   h.insert(book);
-  REQUIRE(h.check_dublicates(book.getTitle()) == TRUE);
+  // checking for dublicates returning true when same book exists
+  REQUIRE(h.check_dublicates(book.getTitle()) == true);
 }
 
 TEST_CASE("removing books","[Remove]"){
@@ -46,13 +58,13 @@ TEST_CASE("removing books","[Remove]"){
     {
       h.remove_book(book.getTitle());
       // testing book exists when removing 1 copy each iteration
-      REQUIRE(h.check_dublicates("of mice and men")== TRUE);
+      REQUIRE(h.check_dublicates("of mice and men") == true);
 
       
     }
       // testing book shouldn't exist when book object is removed
       h.remove_book(book.getTitle());
-      REQUIRE(h.check_dublicates("of mice and men")== FALSE);
+      REQUIRE(h.check_dublicates("of mice and men") == false);
   
 }
 /**

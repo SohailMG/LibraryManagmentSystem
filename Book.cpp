@@ -67,7 +67,9 @@ std::string Book::showAuthors(){
     for (size_t i = 0; i < this->authors.size(); i++)
     {
             
-        authorsList = authorsList + " [" + std::to_string(i + 1)+"] - " +  this->authors.at(i)  + "\n\t   ";
+        authorsList += 
+        " [" + std::to_string(i + 1)+"] - " 
+        +  this->authors.at(i)  + "\n\t   ";
         
     }
     return authorsList;
@@ -77,8 +79,8 @@ std::string Book::showAuthors(){
      
     if (b.title != "")
     {
-    out << "Title     : " << b.getTitle() << "\n"
-        << "ISBN      : " << b.getISBN()<< "\n"
+    out << "Title     : " << b.getTitle()    << "\n"
+        << "ISBN      : " << b.getISBN()     << "\n"
         << "Quantity  : " << b.getQuantity() << "\n"
         <<"------------------------------------------------------\n"
         << "Author(s) :" << b.showAuthors() << std::endl;

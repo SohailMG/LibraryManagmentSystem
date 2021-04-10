@@ -11,17 +11,18 @@
  * UPDATED :  16/04/2021  
 */
 
-
 class Hash
 {
 private:
-     static const int TABEL_SIZE = 271;
-     int ll_size;
-     Book* hashT[TABEL_SIZE];
+
+    int table_size;
+    // pointer to book pointers
+    Book **table;
 
 public:
-    Hash();
-    
+    Hash(int);
+    ~Hash();
+
     unsigned long hash_funtion(std::string key);
     Book search(std::string title);
     void insert(Book V);

@@ -70,14 +70,15 @@ int main(int argc, char const *argv[])
         return 0;
     }
 
-    // declaring a hashtable object;
-    Hash table;
+    // declaring a hashtable object and the table size
+    Hash table = Hash(317);
 
     std::ifstream datafile(argv[1]);
     std::string data;
     std::vector<std::string> tokens;
     std::vector<std::string> authors;
     std::ofstream MyFile("searches.txt");
+    int lines_count = 0;
     while (getline(datafile, data))
     {
         std::stringstream ss(data);
@@ -103,10 +104,11 @@ int main(int argc, char const *argv[])
         table.insert(b);
         MyFile << (table.search(b.getTitle())).getTitle()  << " " << table.hash_funtion(b.getTitle())<< std::endl;
         authors.clear();
-
-
+        lines_count++;
+        
         
     }
+    std::cout << lines_count;
     MyFile.close();
 
     // program loop

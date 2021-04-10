@@ -3,8 +3,8 @@ Command to run Hash Tabel tests
 ```bash
 g++ -std=c++11 HashTable.cpp hash_tests.cpp Book.cpp
 ```
-using just 
+using 
 ```bash
 g++ HashTable.cpp hash_tests.cpp Book.cpp
 ```
-does not compile and gives errors, not sure of the reason
+may cause errors unsure of the reason
