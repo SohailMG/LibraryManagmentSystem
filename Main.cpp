@@ -65,8 +65,8 @@ int main(int argc, char const *argv[])
 {
     if (argc < 2)
     {
-        std::cout << "\tmissing argument\n";
-        std::cout << "Expected <Executable> <datafile>" << std::endl;
+        std::cout << "\tmissing arguments\n";
+        std::cout << "Expected -> ./Program <datafile>" << std::endl;
         return 0;
     }
 
@@ -109,7 +109,9 @@ int main(int argc, char const *argv[])
     for (size_t i = 0; i < books.size(); i++)
     {
         table.insert(books.at(i));
+        MyFile << table.search(books.at(i).getTitle()).getTitle() <<" " <<  table.hash_funtion(books.at(i).getTitle()) << "\n";
     }
+    MyFile.close();
 
     
 

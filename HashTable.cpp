@@ -25,6 +25,7 @@ Hash::Hash(int size)
     this->table_size = size;
     // initialsing an array of book pointer
     table = new Book *[table_size];
+    // initialising each table index to nullptr
     for (size_t i = 0; i < this->table_size; i++)
     {
         table[i] = nullptr;

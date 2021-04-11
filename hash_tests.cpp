@@ -15,16 +15,16 @@
  */
 
 
-Hash h = Hash(317);
+Hash h = Hash(419);
 Book b = Book();
 
 // testing hash function giving different output for each key
 TEST_CASE("testing hash function", "[hash]")
 {
 
-  REQUIRE(h.hash_funtion("Head First SQL") == 131);
-  REQUIRE(h.hash_funtion("Handbook of Graph Theory") == 101);
-  REQUIRE(h.hash_funtion("Learning MySQL") == 223);
+  REQUIRE(h.hash_funtion("Head First SQL") == 377);
+  REQUIRE(h.hash_funtion("Handbook of Graph Theory") == 174);
+  REQUIRE(h.hash_funtion("Learning MySQL") == 50);
 }
 // testing to see if ISBN gets stored entily when it's type is unsigned long
 TEST_CASE("testing ISBN gets stored entirly","[ISBN]")
@@ -77,8 +77,8 @@ TEST_CASE("testing search function","[search]"){
   std::vector<std::string> authors;
   authors.push_back("John Steinbeck");
   authors.push_back("Tom H");
-  Book book1 = Book("Complex Analysis with Applications",authors,9780130457868,3);
-  Book book2 = Book("Practical Common Lisp",authors,9780130457868,3);
+  Book book1 = Book("Logic Programming '89",authors,9780130457868,3);
+  Book book2 = Book("Operating Systems and Middleware",authors,9780130457868,3);
 
   // checking that hash value for both books are equal
   REQUIRE(h.hash_funtion(book1.getTitle()) == h.hash_funtion(book2.getTitle()));
