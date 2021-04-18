@@ -109,11 +109,9 @@ int main(int argc, char const *argv[])
     for (size_t i = 0; i < books.size(); i++)
     {
         table.insert(books.at(i));
-        MyFile << table.search(books.at(i).getTitle()).getTitle() <<" " <<  table.hash_funtion(books.at(i).getTitle()) << "\n";
+        MyFile << table.search(books.at(i).getTitle()).getTitle() << " " << table.hash_title(books.at(i).getTitle()) << "\n";
     }
     MyFile.close();
-
-    
 
     // program loop
     while (true)
@@ -160,28 +158,46 @@ int main(int argc, char const *argv[])
 
                     std::cout << "\t\tEnter ISBN     > ";
                     std::cin >> ISBN;
-
-                    std::cout << "\t\tEnter Quantity > ";
-                    std::cin >> quantity;
-
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    std::cout << "\t\tEnter Authors seperated by (;) > ";
-                    std::getline(std::cin, author);
-                    // splitting authors by del and adding into a vector
-                    std::vector<std::string> tokens = split(author);
-                    // splitting the given authors list by the delimerte
-                    for (size_t i = 0; i < tokens.size(); i++)
+                    if (std::cin.fail())
                     {
-                        authors.push_back(tokens.at(i));
+                        std::cout << "\nInvalid ISBN - Expected a number \n" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     }
+                    else
+                    {
+                        // reading user input for book details
+                        std::cout << "\t\tEnter Quantity > ";
+                        std::cin >> quantity;
+                        // validating non-integer inputs
+                        if (std::cin.fail())
+                        {
+                            std::cout << "\nInvalid Quantity - Expected a number \n" << std::endl;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        }
+                        else
+                        {
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            std::cout << "\t\tEnter Authors seperated by (;) > ";
+                            std::getline(std::cin, author);
+                            // splitting authors by del and adding into a vector
+                            std::vector<std::string> tokens = split(author);
+                            // splitting the given authors list by the delimerte
+                            for (size_t i = 0; i < tokens.size(); i++)
+                            {
+                                authors.push_back(tokens.at(i));
+                            }
 
-                    Book book = Book(title, authors, ISBN, quantity);
-                    table.insert(book);
-                    std::cout << "\n\tNew Book Added\n";
-                    std::cout << "------------------------------" << std::endl;
-                    std::cout << "Book     - " << book.getTitle() << std::endl;
-                    std::cout << "Location - " << table.hash_funtion(book.getTitle()) << std::endl;
-                    std::cout << "------------------------------" << std::endl;
+                            Book book = Book(title, authors, ISBN, quantity);
+                            table.insert(book);
+                            std::cout << "\n\tNew Book Added\n";
+                            std::cout << "------------------------------" << std::endl;
+                            std::cout << "Book     - " << book.getTitle() << std::endl;
+                            std::cout << "Location - " << table.hash_title(book.getTitle()) << std::endl;
+                            std::cout << "------------------------------" << std::endl;
+                        }
+                    }
                 }
             }
             // condition when user chooses to remove lost or damaged book

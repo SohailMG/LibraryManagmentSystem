@@ -20,14 +20,21 @@ private:
     Book **table;
 
 public:
-     Hash(int size);
+     
+    Hash(int size);
     ~Hash();
-
-    unsigned long hash_funtion(std::string key);
+    /**
+     * @brief 
+     * 
+     * @param key 
+     * @return unsigned 
+     */
+    unsigned hash_title(std::string key);
     Book search(std::string title);
     void insert(Book V);
     void remove_book(std::string title);
     bool check_dublicates(std::string title);
+    
 };
 
 #endif

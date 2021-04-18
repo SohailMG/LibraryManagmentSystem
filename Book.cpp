@@ -8,7 +8,14 @@
 Book::Book(){
     
 }
-
+/**
+ * @brief Construct a new Book:: Book object
+ * 
+ * @param title of book of type std::string
+ * @param authors vector of authors of type std::string
+ * @param ISBN  an unsigned long integer
+ * @param quantity number of book copies of type int
+ */
 Book::Book(std::string title, std::vector<std::string> authors, unsigned long ISBN, int quantity)
 {
     this->title = title;
@@ -16,6 +23,7 @@ Book::Book(std::string title, std::vector<std::string> authors, unsigned long IS
     this->ISBN = ISBN;
     this->quantity = quantity;
 }
+// GETTERS
 std::string Book::getTitle()
 {
     return this->title;
@@ -34,6 +42,7 @@ std::vector<std::string> Book::getAuthors()
     return this->authors;
 }
 
+// SETTERS
 void Book::setTitle(std::string title)
 {
     this->title = title;
@@ -74,6 +83,14 @@ std::string Book::showAuthors(){
     }
     return authorsList;
 }
+/**
+ * @brief overloading the output stream to print out the 
+ * book object if the book object d
+ * 
+ * @param out output stream being displayed in the console
+ * @param b refrence to the book object
+ * @return std::ostream& 
+ */
  std::ostream& operator<<(std::ostream &out, Book &b){
     
      

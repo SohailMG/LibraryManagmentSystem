@@ -22,9 +22,11 @@ Book b = Book();
 TEST_CASE("testing hash function", "[hash]")
 {
 
-  REQUIRE(h.hash_funtion("Head First SQL") == 377);
-  REQUIRE(h.hash_funtion("Handbook of Graph Theory") == 174);
-  REQUIRE(h.hash_funtion("Learning MySQL") == 50);
+  REQUIRE(h.hash_title("Head First SQL") == 207);
+  REQUIRE(h.hash_title("Handbook of Graph Theory") == 108);
+  REQUIRE(h.hash_title("Learning MySQL") == 95);
+  // testing that hash function gives same hash value for equal input
+  REQUIRE(h.hash_title("Learning MySQL") == h.hash_title("Learning MySQL") );
 }
 // testing to see if ISBN gets stored entily when it's type is unsigned long
 TEST_CASE("testing ISBN gets stored entirly","[ISBN]")
@@ -73,7 +75,7 @@ TEST_CASE("removing books","[Remove]"){
  * and not the first book in the table cell
  */
 TEST_CASE("testing search function","[search]"){
-  // inserting two book objects that have the hash value 
+  // inserting two book objects that same the hash value 
   std::vector<std::string> authors;
   authors.push_back("John Steinbeck");
   authors.push_back("Tom H");
@@ -81,7 +83,7 @@ TEST_CASE("testing search function","[search]"){
   Book book2 = Book("Operating Systems and Middleware",authors,9780130457868,3);
 
   // checking that hash value for both books are equal
-  REQUIRE(h.hash_funtion(book1.getTitle()) == h.hash_funtion(book2.getTitle()));
+  REQUIRE(h.hash_title(book1.getTitle()) == h.hash_title(book2.getTitle()));
   h.insert(book1);
   h.insert(book2);
   /* 

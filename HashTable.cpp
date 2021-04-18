@@ -44,14 +44,14 @@ Hash::~Hash()
  * @param key title of book as string
  * @return int hash value
  */
-unsigned long Hash::hash_funtion(std::string key)
+unsigned Hash::hash_title(std::string key)
 {
 
     int hash = 21;
-    unsigned long index;
+    unsigned index;
     for (size_t i = 0; i < key.length(); i++)
     {
-        hash = hash + (int)key[i];
+        hash = hash + ((int)key[i] * 17);
     }
     index = hash % table_size;
 
@@ -70,7 +70,7 @@ unsigned long Hash::hash_funtion(std::string key)
 Book Hash::search(std::string title)
 {
     // storing the index value of the given book title
-    unsigned long index = Hash::hash_funtion(title);
+    unsigned index = Hash::hash_title(title);
     // pointer pointing to the first elm in the linked list
     Book *book_ptr = table[index];
     Book book;
@@ -119,7 +119,7 @@ void Hash::insert(Book book)
 
     std::string title = book.getTitle();
     // getting the hash value of the book title being added
-    unsigned long index = Hash::hash_funtion(title);
+    unsigned index = Hash::hash_title(title);
     // checking if the index of the table cell is empty
     if (table[index] == nullptr)
     {
@@ -162,7 +162,7 @@ void Hash::insert(Book book)
  */
 void Hash::remove_book(std::string title)
 {
-    unsigned long index = Hash::hash_funtion(title);
+    unsigned index = Hash::hash_title(title);
 
     // delcaring pointer to point to the book being removed
     Book *delete_ptr;
@@ -186,7 +186,9 @@ void Hash::remove_book(std::string title)
         }
         else
         {
-            table[index]->setTitle("Empty");
+            delete_ptr = table[index];
+            delete delete_ptr;
+            table[index] = nullptr;
             std::cout << "\nTitle  : " << title << std::endl;
             std::cout << "Status : *Removed*" << std::endl;
         }
@@ -275,7 +277,7 @@ void Hash::remove_book(std::string title)
 bool Hash::check_dublicates(std::string title)
 {
     // storing the index value of the given book title
-    unsigned long index = Hash::hash_funtion(title);
+    unsigned index = Hash::hash_title(title);
     //
     Book *ptr = table[index];
     bool exists = false;
