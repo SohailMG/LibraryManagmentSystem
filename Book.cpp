@@ -3,10 +3,10 @@
  * Book.cpp
  * AUTHOR  :  M00716650
  * CREATED :  27/03/2021
- * UPDATED :  16/04/2021  
+ * UPDATED :  27/04/2021  
  * */
-Book::Book(){
-    
+Book::Book()
+{
 }
 /**
  * @brief Construct a new Book:: Book object
@@ -63,7 +63,8 @@ void Book::setNext(Book *next)
 {
     this->next = next;
 }
-Book* Book::getNext(){
+Book *Book::getNext()
+{
     return this->next;
 }
 /**
@@ -71,15 +72,14 @@ Book* Book::getNext(){
  * 
  * @return std::string of authors 
  */
-std::string Book::showAuthors(){
+std::string Book::showAuthors()
+{
     std::string authorsList;
     for (size_t i = 0; i < this->authors.size(); i++)
     {
-            
-        authorsList += 
-        " [" + std::to_string(i + 1)+"] - " 
-        +  this->authors.at(i)  + "\n\t   ";
-        
+
+        authorsList +=
+            " [" + std::to_string(i + 1) + "] - " + this->authors.at(i) + "\n\t   ";
     }
     return authorsList;
 }
@@ -91,17 +91,18 @@ std::string Book::showAuthors(){
  * @param b refrence to the book object
  * @return std::ostream& 
  */
- std::ostream& operator<<(std::ostream &out, Book &b){
-    
-     
+std::ostream &operator<<(std::ostream &out, Book &b)
+{
+
     if (b.title != "")
     {
-    out << "Title     : " << b.getTitle()    << "\n"
-        << "ISBN      : " << b.getISBN()     << "\n"
-        << "Quantity  : " << b.getQuantity() << "\n"
-        <<"------------------------------------------------------\n"
-        << "Author(s) :" << b.showAuthors() << std::endl;
-
-    }else out << " Book Not found";
+        out << "Title     : " << b.getTitle() << "\n"
+            << "ISBN      : " << b.getISBN() << "\n"
+            << "Quantity  : " << b.getQuantity() << "\n"
+            << "------------------------------------------------------\n"
+            << "Author(s) :" << b.showAuthors() << std::endl;
+    }
+    else
+        out << " Book Not found";
     return out;
 }

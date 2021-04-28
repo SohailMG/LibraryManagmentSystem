@@ -9,7 +9,7 @@
  * HashTable.cpp
  * AUTHOR  :  M00716650
  * CREATED :  27/03/2021
- * UPDATED :  16/04/2021  
+ * UPDATED :  27/04/2021  
  * 
  */
 /**
@@ -20,7 +20,7 @@
  * 
  */
 Hash::Hash(int size)
-{   
+{
     // setting the size of the table
     this->table_size = size;
     // initialsing an array of book pointer
@@ -47,7 +47,7 @@ Hash::~Hash()
 unsigned Hash::hash_title(std::string key)
 {
 
-    int hash = 21;
+    int hash = 13;
     unsigned index;
     for (size_t i = 0; i < key.length(); i++)
     {
@@ -116,7 +116,6 @@ Book Hash::search(std::string title)
  */
 void Hash::insert(Book book)
 {
-
     std::string title = book.getTitle();
     // getting the hash value of the book title being added
     unsigned index = Hash::hash_title(title);
@@ -135,7 +134,7 @@ void Hash::insert(Book book)
     else
     {
         // making pointer to point to the first book object in the table cell
-        Book *ptr = table[index];
+        Book *current_ptr = table[index];
         // pointer pointing to new book object
         Book *bookptr = new Book;
         // setting new values of book added
@@ -147,11 +146,11 @@ void Hash::insert(Book book)
         bookptr->setNext(nullptr);
 
         // making the new book pointer to point to the end of the linked list
-        while (ptr->getNext() != nullptr)
+        while (current_ptr->getNext() != nullptr)
         {
-            ptr = ptr->getNext();
+            current_ptr = current_ptr->getNext();
         }
-        ptr->setNext(bookptr);
+        current_ptr->setNext(bookptr);
     }
 }
 
@@ -168,6 +167,7 @@ void Hash::remove_book(std::string title)
     Book *delete_ptr;
     // declaring two pointers to iterate through the linked list and maintain the order
     Book *ptr1;
+    // second pointer will trail one item behind first pointer
     Book *ptr2;
 
     // first condition - checking if the index has no books
@@ -175,28 +175,11 @@ void Hash::remove_book(std::string title)
     {
         std::cout << title << " -  was not found" << std::endl;
     }
-    // second condition - checking if first index matches given title and there are no other books
-    else if (table[index]->getTitle() == title && table[index]->getNext() == nullptr)
-    {
-        if (table[index]->getQuantity() > 0)
-        {
-            table[index]->setQnty(table[index]->getQuantity() - 1);
-            std::cout << "Title            : " << table[index]->getTitle() << std::endl;
-            std::cout << "Copies Remaining : " << table[index]->getQuantity() << std::endl;
-        }
-        else
-        {
-            delete_ptr = table[index];
-            delete delete_ptr;
-            table[index] = nullptr;
-            std::cout << "\nTitle  : " << title << std::endl;
-            std::cout << "Status : *Removed*" << std::endl;
-        }
-    }
-    // third condition - checking if match is found but there are other books in the linked list
+
+    // second condition - checking when first elemenent in table matches title
     else if (table[index]->getTitle() == title)
     {
-        if (table[index]->getQuantity() > 0)
+        if (table[index]->getQuantity() > 1)
         {
             table[index]->setQnty(table[index]->getQuantity() - 1);
             std::cout << "Title            : " << table[index]->getTitle() << std::endl;
@@ -206,20 +189,22 @@ void Hash::remove_book(std::string title)
         {
             delete_ptr = table[index];
             table[index] = table[index]->getNext();
-            std::cout << table[index]->getQuantity();
             delete delete_ptr;
             std::cout << "\nTitle  : " << title << std::endl;
             std::cout << "Status : *Removed* " << std::endl;
         }
     }
-    // final condition - checking when first index has no match but there are other books in the linked list
+    /*
+    final condition - checking when first index has no match 
+    but there are other books in the linked list 
+    */
     else
     {
         // setting first pointer to point to the second book object
         ptr1 = table[index]->getNext();
         /* 
         setting second pointer to point to the first book object 
-        and keep track of the previous book object
+        and keep track of one item behind the book being deleted
         */
         ptr2 = table[index];
 
@@ -234,26 +219,27 @@ void Hash::remove_book(std::string title)
             ptr2 = ptr1;
             ptr1 = ptr1->getNext();
         }
+        // when no match is found
         if (ptr1 == nullptr)
         {
             std::cout << title << " - Was not found" << std::endl;
         }
+        // when ptr1 is pointing to some book object
         else
         {
-            /* 
-            setting the deleting pointer to the matched book object 
-            and setting first pointer to point to next item in the 
-            linked list 
-            */
+            // setting the delete pointer to point to book object being deleted
             delete_ptr = ptr1;
-            if (delete_ptr->getQuantity() > 0)
+            if (delete_ptr->getQuantity() > 1)
             {
                 delete_ptr->setQnty(delete_ptr->getQuantity() - 1);
                 std::cout << "Title            : " << delete_ptr->getTitle() << std::endl;
                 std::cout << "Copies Remaining : " << delete_ptr->getQuantity() << std::endl;
             }
+            // when there are no copies romaining 
             else
             {
+                /* setting first pointer to point to the next pointer the deletion pointer
+                was pointing to */
                 ptr1 = ptr1->getNext();
 
                 // setting second pointer to point to the new item first pointer pointing to
@@ -279,10 +265,10 @@ bool Hash::check_dublicates(std::string title)
     // storing the index value of the given book title
     unsigned index = Hash::hash_title(title);
     //
-    Book *ptr = table[index];
+    Book *current_ptr = table[index];
     bool exists = false;
     // checking if the first elm of the table cell has the default
-    if (ptr == nullptr)
+    if (current_ptr == nullptr)
     {
         exists = false;
     }
@@ -294,18 +280,18 @@ bool Hash::check_dublicates(std::string title)
     else
     {
         bool title_found = false;
-        while (ptr != nullptr && title_found == false)
+        while (current_ptr != nullptr && title_found == false)
         {
-            if (ptr->getTitle() == title)
+            if (current_ptr->getTitle() == title)
             {
                 title_found = true;
                 exists = true;
             }
             else
             {
-                ptr = ptr->getNext();
+                current_ptr = current_ptr->getNext();
             }
-            if (ptr == nullptr)
+            if (current_ptr == nullptr)
             {
                 exists = false;
             }

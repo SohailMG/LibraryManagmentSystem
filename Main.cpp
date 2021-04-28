@@ -11,7 +11,7 @@
  * Main.cpp
  * AUTHOR  :  M00716650
  * CREATED :  27/03/2021
- * UPDATED :  16/04/2021 
+ * UPDATED :  27/04/2021 
  *
  */
 
@@ -75,19 +75,19 @@ int main(int argc, char const *argv[])
     std::vector<std::string> tokens;
     std::vector<std::string> authors;
     std::vector<Book> books;
-    std::ofstream MyFile("searches.txt");
-    int lines_count = 0;
+
+    int table_size = 0;
     while (getline(datafile, data))
     {
         std::stringstream ss(data);
-        std::string title, author, ISBN, Q;
+        std::string title, author, ISBN, qty;
 
         // reading file data seperated by tabs
         std::stringstream split_authors(author);
         std::getline(ss, title, '\t');
         std::getline(ss, author, '\t');
         std::getline(ss, ISBN, '\t');
-        std::getline(ss, Q, '\t');
+        std::getline(ss, qty, '\t');
 
         // splitting the string of authors by delimeter
         std::vector<std::string> tokens = split(author);
@@ -97,28 +97,26 @@ int main(int argc, char const *argv[])
             authors.push_back(tokens.at(i));
         }
         // making a book object and storing them into a vector
-        Book b = Book(title, authors, std::stoul(ISBN), std::stoi(Q));
-        books.push_back(b);
+        Book book = Book(title, authors, std::stoul(ISBN), std::stoi(qty));
+        books.push_back(book);
         authors.clear();
-        lines_count++;
+        // incrementing the table size for each book object
+        table_size++;
     }
 
-    // declaring a hashtable object and the table size
-    Hash table = Hash(lines_count);
+    // declaring a hashtable object and setting the table size
+    Hash table = Hash(table_size);
     // storing each book object into the table
     for (size_t i = 0; i < books.size(); i++)
     {
         table.insert(books.at(i));
-        MyFile << table.search(books.at(i).getTitle()).getTitle() << " " << table.hash_title(books.at(i).getTitle()) << "\n";
     }
-    MyFile.close();
 
     // program loop
     while (true)
     {
         try
         {
-
             int option = select_Option();
             // condition when user chooses to search for a book
             if (option == 1)
@@ -127,9 +125,10 @@ int main(int argc, char const *argv[])
                 std::cout << "\t\tSearch (Full) Book Title   > ";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, title);
+
                 std::cout << "\n--------------------[RESULTS]-------------------------\n";
-                Book b = table.search(title);
-                std::cout << b << std::endl;
+                Book results = table.search(title);
+                std::cout << results << std::endl;
                 std::cout << "------------------------------------------------------\n";
             }
             // conditon when user chooses to add a new book
@@ -155,12 +154,13 @@ int main(int argc, char const *argv[])
                 // adding new book details
                 else
                 {
-
                     std::cout << "\t\tEnter ISBN     > ";
                     std::cin >> ISBN;
+                    // validating input
                     if (std::cin.fail())
                     {
-                        std::cout << "\nInvalid ISBN - Expected a number \n" << std::endl;
+                        std::cout << "\nInvalid ISBN - Expected a number \n"
+                                  << std::endl;
                         std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     }
@@ -169,10 +169,11 @@ int main(int argc, char const *argv[])
                         // reading user input for book details
                         std::cout << "\t\tEnter Quantity > ";
                         std::cin >> quantity;
-                        // validating non-integer inputs
-                        if (std::cin.fail())
+                        // validating non-integer inputs and invalid quantity value
+                        if (std::cin.fail() || quantity < 1)
                         {
-                            std::cout << "\nInvalid Quantity - Expected a number \n" << std::endl;
+                            std::cout << "\nInvalid Quantity - Expected a number \n"
+                                      << std::endl;
                             std::cin.clear();
                             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         }
@@ -189,13 +190,13 @@ int main(int argc, char const *argv[])
                                 authors.push_back(tokens.at(i));
                             }
 
-                            Book book = Book(title, authors, ISBN, quantity);
-                            table.insert(book);
+                            Book new_book = Book(title, authors, ISBN, quantity);
+                            table.insert(new_book);
                             std::cout << "\n\tNew Book Added\n";
-                            std::cout << "------------------------------" << std::endl;
-                            std::cout << "Book     - " << book.getTitle() << std::endl;
-                            std::cout << "Location - " << table.hash_title(book.getTitle()) << std::endl;
-                            std::cout << "------------------------------" << std::endl;
+                            std::cout << "------------------------------------------------------" << std::endl;
+                            std::cout << new_book << std::endl;
+                            std::cout << "Location - " << table.hash_title(new_book.getTitle()) << "\n"
+                                      << std::endl;
                         }
                     }
                 }
