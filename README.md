@@ -2,7 +2,7 @@
 This program reads dataset of books and stores their details into a hashtable at the start of the program.the program allows for searching book by title,adding and removing books
 To run program
 ```bash
-cd to LibraryManagmentSystem then make
+cd to LibraryManagmentSystem then run  make
 ```
 Then
 ```bash
